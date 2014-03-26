@@ -27,13 +27,15 @@ int main() {
 	memset(&serv_addr, '0', sizeof(serv_addr));
 	memset(buff, '0', sizeof(buff));
 
-	serv_addr.sin_family AF_INET;
+	serv_addr.sin_family = AF_INET;
 	// Alllows the program to run without knowing the ip-address.
-	serv_addr.sin_addr.s_addr = hton1(INADDR_ANY);
+	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// the port.
 	serv_addr.sin_port = htons(12345);
+
 	// binds the ip-address to the socket
 	bind(listen, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
+
 	// specifies maximum number of client connections that server will queue for this listening socket.
 	listen(listening, 10);
 
