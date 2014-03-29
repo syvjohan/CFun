@@ -2,56 +2,74 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <string.h>
-#include <sys/types.h>
-#include <time.h>
+#include <string.h>    //strlen
+#include <sys/socket.h>
+#include <arpa/inet.h> //inet_addr
+#include <unistd.h>    //write
+ 
+int main(int argc , char *argv[])
+{
+    int socketD , clientSock , conn , readSize;
+    struct sockaddr_in server , client;
+    char clientMessage[1024];
+    const int port = 12345;
+     
+    //Create socket
+    socketD = socket(AF_INET , SOCK_STREAM , 0);
+    if (socketD == -1)
+    {
+        printf("Could not create socket");
+    }
+    puts("Socket created");
+     
+    //Prepare the sockaddr_in structure
+    server.sin_family = AF_INET;
+    server.sin_addr.s_addr = INADDR_ANY;
+    server.sin_port = htons(port);
+     
+    //Bind
+    if( bind(socketD,(struct sockaddr *)&server , sizeof(server)) < 0)
+    {
+        //print the error message
+        perror("bind failed. Error: ");
+        return 1;
+    }
+    puts("bind done");
+     
+    //Listen
+    listen(socketD , 3);
+     
+    //Accept and incoming connection
+    puts("Waiting for incoming connections...");
+    conn = sizeof(struct sockaddr_in);
+     
+    //accept connection from an incoming client
+    clientSock = accept(socketD, (struct sockaddr *)&client, (socklen_t*)&conn);
+    if (clientSock < 0)
+    {
+        perror("accept failed. Error: ");
+        return 1;
+    }
+    puts("Connection accepted");
 
-int main(int argc, char *argv[]) {
-	int listening = 0;
-	int connect = 0;
-	struct sockaddr_in serv_addr;
-	const int port = 12345;
-
-	time_t ticks;
-
-	char buff[1025];
-
-	//<sys/socket.h>
-	// AF_INET This designates the address format that goes with the Internet namespace.
-	//The SOCK_STREAM style is like a pipe. it operates over a connection with a particular remote socket, and transmits data reliably as a stream of bytes.
-	listening = socket(AF_INET, SOCK_STREAM, 0);
-	//<string.h>
-	// copies the character c (an unsigned char) to the first n characters of the string pointed to by the argument str.
-	memset(&serv_addr, '0', sizeof(serv_addr));
-	memset(buff, '0', sizeof(buff));
-
-	serv_addr.sin_family = AF_INET;
-	// Alllows the program to run without knowing the ip-address.
-	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-	// the port.
-	serv_addr.sin_port = htons(port);
-
-	// binds the ip-address to the socket
-	bind(listening, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
-	// specifies maximum number of client connections that server will queue for this listening socket.
-	listen(listening, 10);
-
-	while(1) {
-		connect = accept(listening, (struct sockaddr*) NULL, NULL);
-
-		ticks = time(NULL);
-		//snprintf = redirects the output of printf to a buffer
-		// ctime = returns a string representing the localtime based on the argument timer.
-		snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-		write(connect, buff, strlen(buff));
-
-		close(connect);
-		// sleep for one second. 
-		// prevents resources from beeing wasted. 
-		sleep(1);
-
-	}
+     //empty array with messages
+        memset(&clientMessage[0], 0, sizeof(clientMessage));
+    //Receive a message from client
+    while((readSize = recv(clientSock , clientMessage , 1024 , 0)) > 0)
+    {
+        //Send the message back to client
+        write(clientSock , clientMessage , strlen(clientMessage));
+       
+    }
+     
+    if(readSize == 0)
+    {
+        puts("Client disconnected");
+    }
+    else if(readSize == -1)
+    {
+        perror("recv failed. Error: ");
+    }
+     
+    return 0;
 }
