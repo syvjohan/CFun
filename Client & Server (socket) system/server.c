@@ -13,6 +13,7 @@ int main() {
 	int listening = 0;
 	int connect = 0;
 	struct sockaddr_in serv_addr;
+	const int port = 12345;
 
 	time_t ticks;
 
@@ -31,7 +32,7 @@ int main() {
 	// Alllows the program to run without knowing the ip-address.
 	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// the port.
-	serv_addr.sin_port = htons(12345);
+	serv_addr.sin_port = htons(port);
 
 	// binds the ip-address to the socket
 	bind(listen, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
