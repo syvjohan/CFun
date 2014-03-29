@@ -1,55 +1,59 @@
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
+#include <netdb.h>
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
-#include <string.h>
-#include <sys/types.h>
-#include <time.h>
+#include <arpa/inet.h> 
 
-int main() {
-	int listening = 0;
-	int connect = 0;
+//pass two arguments to main, when main is called. argc = arguments count,
+// s a pointer to an array of character strings that contain the arguments, one per string.
+int main(int argc, char *argv[]) {
+	int sock = 0;
+	int num = 0;
+	char buff[1024];
+	const int port = 12345;
 	struct sockaddr_in serv_addr;
 
-	time_t ticks;
-
-	char buff[1025];
-
-	//<sys/socket.h>
-	// AF_INET This designates the address format that goes with the Internet namespace.
-	//The SOCK_STREAM style is like a pipe. it operates over a connection with a particular remote socket, and transmits data reliably as a stream of bytes.
-	listening = socket(AF_INET, SOCK_STREAM, 0);
-	//<string.h>
-	// copies the character c (an unsigned char) to the first n characters of the string pointed to by the argument str.
-	memset(&serv_addr, '0', sizeof(serv_addr));
-	memset(buff, '0', sizeof(buff));
-
-	serv_addr.sin_family AF_INET;
-	// Alllows the program to run without knowing the ip-address.
-	serv_addr.sin_addr.s_addr = hton1(INADDR_ANY);
-	// the port.
-	serv_addr.sin_port = htons(12345);
-	// binds the ip-address to the socket
-	bind(listen, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
-	// specifies maximum number of client connections that server will queue for this listening socket.
-	listen(listening, 10);
-
-	while(1) {
-		connect = accept(listening, (struct sockaddr*) NULL, NULL);
-
-		ticks = time(NULL);
-		//snprintf = redirects the output of printf to a buffer
-		// ctime = returns a string representing the localtime based on the argument timer.
-		snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
-		write(connect, buff, strlen(buff));
-
-		close(connect);
-		// sleep for one second. 
-		// prevents resources from beeing wasted. 
-		sleep(1);
-
+	if (argc != 2) {
+		printf("\n Usage: %s <ip of server> \n", argv[0]);
+		return 1;
 	}
+
+	memset(buff, '0', sizeof(buff));
+	if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+		printf("\n ERROR : Could not create a socket \n")
+		return 1;
+	}
+
+	memset(&serv_addr, '0', sizeof(serv_addr));
+
+	serv_addr.sin_family = AF_INET;
+	serv_addr.sin_port = htons(port);
+
+	if (inet_pton(AF_INET, argv[1], &serv_addr.sin_addr) <= 0) {
+		printf("\n inet_pton error occured \n");
+		return 1;
+	}
+
+	if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+		printf("\n ERROR : connect failed \n");
+		return 1;
+	}
+
+	while ((num = read(sock, buff, sizeof(buff)-1)) > 0) {
+		buff[num] = 0;
+		if(fputs(buff, stdout) == EOF) {
+			printf("\n ERROR : fputs error\n");
+		}
+	}
+
+	if(n < 0) {
+		printf("\n Read error \n");
+	}
+
+	return 0;
 }
