@@ -1,59 +1,63 @@
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <arpa/inet.h> 
-
-//pass two arguments to main, when main is called. argc = arguments count,
-// s a pointer to an array of character strings that contain the arguments, one per string.
-int main(int argc, char *argv[]) {
-	int sock = 0;
-	int num = 0;
-	char buff[1024];
-	const int port = 12345;
-	struct sockaddr_in serv_addr;
-
-	if (argc != 2) {
-		printf("\n Usage: <ip of server> %s \n", argv[0]);
-		return 1;
-	}
-
-	memset(buff, '0', sizeof(buff));
-	if((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-		printf("\n ERROR : Could not create a socket \n");
-		return 1;
-	}
-
-	memset(&serv_addr, '0', sizeof(serv_addr));
-
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_port = htons(port);
-
-	if (inet_pton(AF_INET, argv[1], &serv_addr.sin_addr) <= 0) {
-		printf("\n inet_pton error occured \n");
-		return 1;
-	}
-
-	if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
-		printf("\n ERROR : connection failed \n");
-		return 1;
-	}
-
-	while ((num = read(sock, buff, sizeof(buff)-1)) > 0) {
-		buff[num] = 0;
-		if(fputs(buff, stdout) == EOF) {
-			printf("\n ERROR : fputs error \n");
-		}
-	}
-
-	if(num < 0) {
-		printf("\n Read error \n");
-	}
-
-	return 0;
+#include <stdio.h> //printf
+#include <string.h>    //strlen
+#include <sys/socket.h>    //socket
+#include <arpa/inet.h> //inet_addr
+ 
+int main(int argc , char *argv[])
+{
+    int sock;
+    struct sockaddr_in server;
+    char message[1024] , serverReply[1024];
+    const int port = 12345;
+    const char ip[10] = "127.0.0.1";
+     
+    //Create socket
+    sock = socket(AF_INET , SOCK_STREAM , 0);
+    if (sock == -1)
+    {
+        printf("Could not create socket");
+    }
+    printf("Socket created\n");
+     
+    server.sin_addr.s_addr = inet_addr(ip);
+    server.sin_family = AF_INET;
+    server.sin_port = htons(port);
+ 
+    //Connect to remote server
+    if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
+    {
+        perror("connect failed. Error");
+        return 1;
+    }
+     
+    printf("Connected\n");
+     
+    //keep communicating with server
+    while (1)
+    {
+    	memset(&message[0], 0, sizeof(message));
+        printf("Enter message : ");
+        scanf("%s" , message);
+         
+        //Send some data
+        if (send(sock , message , strlen(message) , 0) < 0)
+        {
+            printf("Send failed");
+            return 1;
+        }
+        
+        //Empty char[] 
+        memset(&serverReply[0], 0, sizeof(serverReply));
+        //Receive a reply from the server
+        if (recv(sock , serverReply , 1024, 0) < 0)
+        {
+            printf("recv failed");
+            break;
+        }
+        puts("Received message: ");
+        puts(serverReply);
+    }
+     
+    close(sock);
+    return 0;
 }
