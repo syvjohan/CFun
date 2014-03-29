@@ -52,14 +52,13 @@ int main(int argc , char *argv[])
     }
     puts("Connection accepted");
 
-     //empty array with messages
-        memset(&clientMessage[0], 0, sizeof(clientMessage));
     //Receive a message from client
     while((readSize = recv(clientSock , clientMessage , 1024 , 0)) > 0)
     {
         //Send the message back to client
         write(clientSock , clientMessage , strlen(clientMessage));
-       
+        //empty array with messages
+        memset(&clientMessage[0], 0, sizeof(clientMessage));
     }
      
     if(readSize == 0)
