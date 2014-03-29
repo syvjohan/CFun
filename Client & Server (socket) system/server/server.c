@@ -37,6 +37,7 @@ int main(int argc , char *argv[])
     puts("bind done");
      
     //Listen
+    //Ḿax 3 client allows to connect at the same time.
     listen(socketD , 3);
      
     //Accept and incoming connection
