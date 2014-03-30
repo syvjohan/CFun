@@ -13,7 +13,7 @@ void insert(node **tree, int value) {
 	node *temp = NULL;
 	if (!(*tree)) {
 		// Allocate memory.
-		temp = (*node)malloc(sizeof(node));
+		temp = (node *)malloc(sizeof(node));
 		temp->left = temp->right = NULL;
 		temp->data = value;
 		*tree = temp;
@@ -26,7 +26,7 @@ void insert(node **tree, int value) {
 	}
 	// if the inserted value is higher put it to the rigth
 	else if (value > (*tree)->data) {
-		insert(&(*tree)->right, value)
+		insert(&(*tree)->right, value);
 	}
 }
 
@@ -34,14 +34,14 @@ void insert(node **tree, int value) {
 void deleteTree(node *tree) {
 	if (tree) {
 		deleteTree(tree->left);
-		deleteTree(tree->rigth);
+		deleteTree(tree->right);
 		// Free memory
 		free(tree);
 	}
 }
 
 //Search the tree for a specific  value.
-node* search(node **tree, int value) {
+node* searchTree(node **tree, int value) {
 	//If there is no tree
 	if (!(*tree)) {
 		return NULL;
@@ -49,11 +49,11 @@ node* search(node **tree, int value) {
 
 	//If the searched value is lower then the node value.
 	if (value < (*tree)->data) {
-		search(&((*tree)->left), value);
+		searchTree(&((*tree)->left), value);
 	}
 	//If the searched value is higher then the node value.
 	else if (value > (*tree)->data) {
-		search(&((*tree)->right), value);
+		searchTree(&((*tree)->right), value);
 	}
 	//If the searched value is equal to the root.
 	else if (value == (*tree)->data) {
@@ -65,8 +65,8 @@ node* search(node **tree, int value) {
 void printPreorder(node *tree) {
 	if (tree) {
 		printf("%d\n", tree->data);
-		print_preorder(tree->left);
-		print_preorder(tree->right);
+		printPreorder(tree->left);
+		printPreorder(tree->right);
 	}
 }
 
@@ -106,16 +106,16 @@ int main() {
 
      /* Printing nodes of tree */
     printf("Pre Order Display\n");
-    print_preorder(root);
+    printPreorder(root);
 
     printf("In Order Display\n");
-    print_inorder(root);
+    printInorder(root);
 
     printf("Post Order Display\n");
-    print_postorder(root);
+    printPostorder(root);
 
     /* Search node into tree */
-    tmp = search(&root, 4);
+    tmp = searchTree(&root, 4);
     if (tmp)
     {
         printf("Searched node=%d\n", tmp->data);
@@ -126,7 +126,7 @@ int main() {
     }
 
     /* Deleting all nodes of tree */
-    deltree(root);
+    deleteTree(root);
 
 	return 0;
 }
