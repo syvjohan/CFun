@@ -1,0 +1,29 @@
+ The ampersand, when combined with the variable name,
+tells scanf the location (or address) in memory at which the variable integer1 is stored.
+The computer then stores the value for integer1 at that location. 
+
+
+ The ampersand, when combined with the variable name,
+tells scanf the location (or address) in memory at which the variable integer1 is stored.
+The computer then stores the value for integer1 at that location. 
+
+C provides three types of repetition structures in the form of statements, namely
+while (Section 3.7), do…while, and for (both discussed in Chapter 4). 
+
+C has only seven control statements: sequence, three types of
+selection and three types of repetition.
+
+(s.61 i boken)
+printf( "%s\n", grade >= 60 ? "Passed" : "Failed" );
+grade >= 60 ? printf( "Passed\n" ) : printf( "Failed\n" );
+
+%.2f innebär att två decimaler kommer skrivas ut.
+
+
+Pre-increment operator is used to increment the value of variable before using in the expression. The Pre-Incremented value is first incremented and the used inside the expression.
+b = ++y;
+
+B. Post Increment Operator in C Programming :
+Post-increment operator is used to increment the value of variable as soon as after executing expression completely in which post increment is used. The Post-Increment value is first used in a expression and then incremented.
+
+b = x++;
