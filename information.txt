@@ -25,5 +25,27 @@ b = ++y;
 
 B. Post Increment Operator in C Programming :
 Post-increment operator is used to increment the value of variable as soon as after executing expression completely in which post increment is used. The Post-Increment value is first used in a expression and then incremented.
-
 b = x++;
+
+There are two ways to invoke functions in many programming languages—call-by-value
+and call-by-reference. When arguments are passed by value, a copy of the argument’s value
+is made and passed to the called function. Changes to the copy do not affect an original
+variable’s value in the caller. When an argument is passed by reference, the caller allows
+the called function to modify the original variable’s value.
+Call-by-value should be used whenever the called function does not need to modify
+the value of the caller’s original variable. This prevents the accidental side effects (variable
+modifications) that so greatly hinder the development of correct and reliable software systems.
+Call-by-reference should be used only with trusted called functions that need to
+modify the original variable.
+In C, all calls are by value.
+
+A function’s local variables (those declared
+in the parameter list or function body) normally have automatic storage duration.
+Keyword auto explicitly declares variables of automatic storage duration. For example, the
+following declaration indicates that double variables x and y are automatic local variables
+and they exist only in the body of the function in which the declaration appears:
+
+The compiler may ignore register declarations. For example, there may not be a sufficient
+number of registers available for the compiler to use. The following declaration sugauto
+gests that the integer variable counter be placed in one of the computer’s registers and
+initialized to 1:
