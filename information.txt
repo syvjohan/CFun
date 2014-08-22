@@ -49,3 +49,8 @@ The compiler may ignore register declarations. For example, there may not be a s
 number of registers available for the compiler to use. The following declaration sugauto
 gests that the integer variable counter be placed in one of the computer’s registers and
 initialized to 1:
+
+If the user types 20 or more characters, your program may crash! For this
+reason, use the conversion specifier %19s so that scanf does not write characters into memory
+beyond the end of the array s.
+
