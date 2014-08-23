@@ -54,3 +54,25 @@ If the user types 20 or more characters, your program may crash! For this
 reason, use the conversion specifier %19s so that scanf does not write characters into memory
 beyond the end of the array s.
 
+The following nested for statement determines the total of all the elements in array a:
+total = 0;
+for ( row = 0; row <= 2; row++ ) {
+for ( column = 0; column <= 3; column++ ) {
+total += a[ row ][ column ];
+}
+}
+
+printf( "%d", *yPtr );
+prints the value of variable y, namely 5. Using * in this manner is called dereferencing a
+pointer.
+
+There are four ways to pass a pointer to a function: a non-constant pointer to nonconstant
+data, a constant pointer to nonconstant data, a non-constant pointer to constant
+data, and a constant pointer to constant data. Each of the four combinations provides
+different access privileges.
+
+Using pointers to constant data in this manner is an example of a time/space tradeoff.
+If memory is low and execution efficiency is a concern, use pointers. If memory is in
+abundance and efficiency is not a major concern, pass data by value to enforce the principle
+of least privilege. Remember that some systems do not enforce const well, so call-byvalue
+is still the best way to prevent data from being modified.
