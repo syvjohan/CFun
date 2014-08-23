@@ -76,3 +76,15 @@ If memory is low and execution efficiency is a concern, use pointers. If memory 
 abundance and efficiency is not a major concern, pass data by value to enforce the principle
 of least privilege. Remember that some systems do not enforce const well, so call-byvalue
 is still the best way to prevent data from being modified.
+
+Sizeof:
+Variables of type float are normally stored in 4 bytes of memory, and array
+is defined to have 20 elements. Therefore, there are a total of 80 bytes in array.
+
+s.274 flytta pekaren mellan de olika elementen i en array.
+
+För att komma åt första elementet: bPtr = b; samma som att skriva bPtr = &b[ 0 ]; eller *( bPtr + 3 ) eller bPtr[ 1 ]
+
+För att komma åt tredje elementet: &b[ 3 ] eller bPtr + 3 eller *( b + 3 )
+
+
