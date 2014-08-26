@@ -87,4 +87,17 @@ För att komma åt första elementet: bPtr = b; samma som att skriva bPtr = &b[ 
 
 För att komma åt tredje elementet: &b[ 3 ] eller bPtr + 3 eller *( b + 3 )
 
+int (*compare)( int a, int b )
+This tells bubble to expect a parameter (compare) that is a pointer to a function that receives
+two integer parameters and returns an integer result. Parentheses are needed around
+*compare to group * with compare to indicate that compare is a pointer. If we had not included
+the parentheses, the declaration would have been
+int *compare( int a, int b )
+which declares a function that receives two integers as parameters and returns a pointer to
+an integer.
+The function prototype for bubble is shown in line 7. The prototype could have been
+written as
+
+
+
 
