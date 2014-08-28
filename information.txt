@@ -29,15 +29,10 @@ b = x++;
 
 There are two ways to invoke functions in many programming languages—call-by-value
 and call-by-reference. When arguments are passed by value, a copy of the argument’s value
-is made and passed to the called function. Changes to the copy do not affect an original
-variable’s value in the caller. When an argument is passed by reference, the caller allows
-the called function to modify the original variable’s value.
-Call-by-value should be used whenever the called function does not need to modify
-the value of the caller’s original variable. This prevents the accidental side effects (variable
+is made and passed to the called function. Changes to the copy do not affect an original variable’s value in the caller. When an argument is passed by reference, the caller allows the called function to modify the original variable’s value.
+Call-by-value should be used whenever the called function does not need to modify the value of the caller’s original variable. This prevents the accidental side effects (variable
 modifications) that so greatly hinder the development of correct and reliable software systems.
-Call-by-reference should be used only with trusted called functions that need to
-modify the original variable.
-In C, all calls are by value.
+Call-by-reference should be used only with trusted called functions that need to modify the original variable. In C, all calls are by value.
 
 A function’s local variables (those declared
 in the parameter list or function body) normally have automatic storage duration.
@@ -95,9 +90,35 @@ the parentheses, the declaration would have been
 int *compare( int a, int b )
 which declares a function that receives two integers as parameters and returns a pointer to
 an integer.
-The function prototype for bubble is shown in line 7. The prototype could have been
-written as
+
+So, it is possible that the user input could exceed 19 characters and that your
+program might crash! For this reason, use the conversion specifier %19s so that scanf reads up to 19 characters and saves the last character for the terminating null character. This prevents
+scanf from writing characters into memory beyond the end of s.
+
+printf("%s",
+	isalpha('2') ? "character is a digit" : "character is not a digit");
+
+/* use getchar to read each character */
+while ( ( c = getchar() ) != '\n') {
+sentence[ i++ ] = c;
+} /* end while */
 
 
+Warningsmessages with strerror, ex: printf("%s\n", strerror(1));
+
+strlen counts the number of characters in the string.
+
+printf("%g") skriver ut det som 1.23457e+006
+printf("%f") skriver ut det som 1234567.890000
+
+The only valid operations that may be performed on structures are the following: assigning
+structure variables to structure variables of the same type, taking the address (&) of a structure
+variable, accessing the members of a structure variable (see Section 10.4) and using
+the sizeof operator to determine the size of a structure variable.
+
+Sidan 457 bra beskrivning (bild) av filoverforing.
+
+För att den gamla inputen inte ska finnas när användaren skriver in ny input gör ett mellanslag innan c scanf(" %c", &choice); //http://stackoverflow.com/questions/18491390/difference-between-scanfc-c-and-scanf-c-c
 
 
+GÖRA EN DATABAS!
