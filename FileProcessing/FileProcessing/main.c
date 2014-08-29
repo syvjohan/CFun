@@ -4,9 +4,11 @@
 #include <ctype.h>
 
 void writeTofile();
-void createAndOpenFile();
-int validateFileExtension();
-int validateFileName();
+int createFile(const char fileName[]);
+int openFile(const char fileName[]);
+deleteFile(const char fileName[]) ;
+void start();
+void menu();
 
 typedef struct 
 {
@@ -23,95 +25,111 @@ FILE *cfPtr;
 
 int main(void) {
 
-	printf("write the name and extension on the file you would like to open:\n");
-	scanf("%s", &fileName);
-
-	// Open the file if filename exist and extension is ok!
-	if(validateFileName(fileName) == 1) {
-		if (validateFileExtension(fileName) == 1) {
-			// if the file exist open and write to it!
-			writeTofile();
-
-		} else {
-			printf("extension is not supported");
-		}
-
-	} else {
-		printf("file could not be found \n");
-		createAndOpenFile(fileName);
-	}
+	start();
 
 	system("pause");
 	return 0;
 }
 
-void createAndOpenFile(char fileName[]) {
+void menu() {
+	int choice = 0;
+	// empty the filename array.
+	memset(&fileName[0], 0, sizeof(fileName)); 
 
-	char choice;
-	do {
-		printf("Would you like to create a new file with the filename %s", fileName);
-		printf("?\nPress (y), (n) or (e): ");
-
-		scanf(" %c", &choice);
-
-		switch (choice)
-		{
-		case 'y':
-			cfPtr = fopen (fileName, "wb");
-			writeTofile();
-			break;
-		case 'n':
-			memset(fileName, 0, sizeof(fileName)); // empty the filename array.
-			printf("write the name on the file you would like to open:\n");
-			scanf("%s", &fileName);
-
-			if ((cfPtr = fopen(fileName, "rb+")) == NULL) {
-				printf("file could not be opened \n");
+	scanf(" %i", &choice);
+	if (!isdigit(choice)) {
+		if (choice < 0 || choice > 3) {
+			printf("Not a valid choice\n");
+		} else {
+			switch (choice)
+			{
+			case 1:
+				//Create new file
+				printf("Write the name of the file to create: \n");
+				scanf(" %s", fileName);
+				createFile(fileName);
+				if (createFile(fileName) == 0) {
+					printf("File could not be created\n");
+				} else {
+					printf("file has been succesful created\n");
+				}
+				break;
+			case 2:
+				//open file
+				printf("Write the name on the file to open: \n");
+				scanf(" %s", fileName);
+				if (openFile(fileName) == 0) {
+					printf("File could not be found\n");
+				} else {
+					//write to that file
+					writeTofile();
+				}
+				break;
+			case 3:
+				//Delete file
+				printf("Write the name of the file to delete\n");
+				scanf(" %s", fileName);
+				if (openFile(fileName) != 0) {
+					//close file!
+					fclose(cfPtr);
+					if (deleteFile(fileName) == 0) {
+						perror("Error file not deleted\n");
+					} else {
+						printf("File deleted\n\n");
+					}
+				} else {
+					printf("File name does not exist\n");
+				}
+				break;
+			case 0:
+				//End program
+				exit(0);
+				break;
 			}
-			else {
-				writeTofile();
-			}
-			break;
-		case 'e':
-			break;
-		default:
-			printf("\nInvalid character!\n");
-			break;
 		}
-	} while(choice != 'e');
+	} else {
+		printf("input shall be an integer\n");
+	}
+	start();
 }
 
-int validateFileExtension(const char fileName[]) {
+void start() {
+	printf("Welcome to the file handling c program\n");
+	printf("---------------------------------------\n");
+	printf("Choose one of the 4 choices:\n\n");
+	printf("Press 1 to Create a new file\nPress 2 to make changes in a existing file\nPress 3 to delete file\nPress 0 to exit program\n");
+	menu();
+}
 
-	const char extension[] = {'txt', 'c', 'cpp', 'xml', 'html'};
-	// Determines the number of elements in the array.
-	int numElement = sizeof(extension) / sizeof(int);
-	int i;
-	for (i = 0; i <= numElement; i++) {
-		const char *dot = strrchr(fileName, i);
-		if (!dot || dot == fileName) {
-			return 0;
-		}
+int createFile(const char fileName[]) {
+
+	if ((cfPtr = fopen (fileName, "wb")) == NULL) {
+		return 0;
+	} else {
+		//close file!
+		fclose(cfPtr);
 		return 1;
 	}
 }
 
-int validateFileName(const char fileName[]) {
+int openFile(const char fileName[]) {
 
 	if ((cfPtr = fopen(fileName, "rb+")) == NULL) {
 		return 0;
+	} else {
+		return 1;
 	}
-	return 1;
 }
 
 void writeTofile() {
 
 	Customer customer = {0, "", 0, 0};
+	char choice;
 
 	printf("Enter a tableIdNum between (1 and 10, 0 to end input):\n");
 	scanf("%i", &customer.tableIdNum);
 
-	while (customer.tableIdNum != 0) {
+	while (customer.tableIdNum > 0 && customer.tableIdNum <= 10) {
 		printf("Enter: age, name, id number\n");
 
 		// Set values
@@ -124,10 +142,36 @@ void writeTofile() {
 		//Write information in file
 		fwrite(&customer, sizeof(Customer), 1, cfPtr);
 
-		//enable user to write new input to file,
-		printf("Enter a tableIdNum between (1 and 10, 0 to end input):\n");
-		scanf("%i", &customer.tableIdNum);
+		printf("Do you like to add (a) more input or close (c) the file? \n");
+		scanf(" %c", &choice);
+		if (isalpha(choice) && (choice == 'a' || 'c')) {
+			do {
+				switch (choice)
+				{
+				case 'a':
+					//recursive call
+					//enable user to write new input to file,
+					writeTofile();
+					break;
+					//close file.
+				case 'c':
+					fclose(cfPtr);
+					start();
+					break;
+				}
+			} while(choice != 'c');
+		} else {
+			printf("input shall be 'a' or 'c'\n");
+		}
 
 	}
 	fclose(cfPtr);
+}
+
+int deleteFile(const char fileName[]) {
+	if (remove(fileName) != 0) {
+		return 0;
+	} else {
+		return 1;
+	}
 }
