@@ -163,7 +163,6 @@ void writeTofile() {
 		} else {
 			printf("input shall be 'a' or 'c'\n");
 		}
-
 	}
 	fclose(cfPtr);
 }

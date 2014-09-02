@@ -3,31 +3,48 @@
 #include <ctype.h>
 #include <string.h>
 
+int readNumber(int *outInt);
+
 int main(void) {
 
-	/*char s1[17];
-	char s2[] = "copy this string";
+	int in = 0;
+	scanf(" %d", in);
 
-	memcpy(s1,s2, 13);
 
-	printf("%s\n", s1);
-	*/
-
-	//printf("%s\n", strerror(1));
-	
-	char c = '\0';
-
-	scanf("%c", &c);
-
-	switch (c)
-	{
-	case 'a':
-			printf("pppppp");
-			break;
-	default:
-		break;
+	if (readNumber(&in) == 0) {
+		printf("is a number");
+	} else {
+		printf("not a number");
 	}
 
 	system("pause");
+	return 0;
+}
+
+int readNumber(int *outInt) {
+	int result = 0;
+	char in;
+	int mod = 1;
+	int first = 1;
+
+	while ((in = getchar()) != EOF) {
+		if (first && in == '-') {
+			mod = -1;
+		} else if (isdigit(in)) {
+			result *= 10;
+			result += in - '0';
+		} else {
+			break;
+		}
+
+		first = 0;
+	}
+
+	if (in != '\n' && in != '\r' && in != EOF && in != ' ' && in != '\t') {
+		return -1;
+	}
+
+	*outInt = result * mod;
+
 	return 0;
 }
