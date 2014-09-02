@@ -121,4 +121,34 @@ Sidan 457 bra beskrivning (bild) av filoverforing.
 För att den gamla inputen inte ska finnas när användaren skriver in ny input gör ett mellanslag innan c scanf(" %c", &choice); //http://stackoverflow.com/questions/18491390/difference-between-scanfc-c-and-scanf-c-c
 
 
-GÖRA EN DATABAS!
+S.497 vissar en bild av insert i en linked list.
+
+A string is actually an object of the C++ Standard Library class string.
+
+Two Ways to Provide a Default Constructor for a Class
+Any constructor that takes no arguments is called a default constructor. A class gets a default constructor in one of two ways:
+
+1. The compiler implicitly creates a default constructor in a class that does not define a constructor. Such a constructor does not initialize the class’s data members, but does call the default constructor for each data member that is an object of another class. An uninitialized variable typically contains a “garbage” value.
+
+2. You explicitly define a constructor that takes no arguments. Such a default constructor
+will call the default constructor for each data member that is an object of
+another class and will perform additional initialization specified by you.
+
+The constructor for each of these objects is called when execution reaches the point where that object is declared.
+
+The const qualifier at the end of a member function declaration indicates that the function can be called on objects which are themselves const. const member functions promise not to change the state of any non-mutable data members.
+const member functions can also, of course, be called on non-const objects (and still make the same promise).
+Member functions can be overloaded on const-ness as well. 
+
+There is an important exception to the rule that each object of a class has its own copy of all the data members of the class. In certain cases, only one copy of a variable should be shared by all objects of a class. A static data member is used for these and other reasons.
+
+By default, an object or variable that is defined outside all blocks has static duration and external linkage. Static duration means that the object or variable is allocated when the program starts and is deallocated when the program ends. (http://msdn.microsoft.com/en-us/library/s1sb61xd.aspx)
+
+Test::Test(int value) : x(value) 
+{}
+
+//Equalient to:
+/*
+Test::Test(int value) {
+	x = value;
+*/
