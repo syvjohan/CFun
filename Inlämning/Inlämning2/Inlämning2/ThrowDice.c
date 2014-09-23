@@ -15,14 +15,20 @@ struct Dice {
 	int side6;
 }dice;
 
-void drawDireMenu() {
+void drawDiceMenu() {
 	printf("Welcome to the throw dice game\n");
 	printf("----------------------------------------------------\n");
 	printf("Please enter the number of cast you wish to do: ");
 }
 
-void drawResult(int numbOfCast) {
-	printf("\nResult of throwing the dice");
+double dicePercent(double side, double numbOfCast) {
+	double result = side / numbOfCast;
+	return result * 100;
+}
+
+void drawDiceResult(double numbOfCast) {
+	printf("\nResult of throwing the dice %i", (int)numbOfCast);
+	printf(" times");
 	printf("\nOne %d", dice.side1);
 	printf("\nTwo %d", dice.side2);
 	printf("\nThree %d", dice.side3);
@@ -31,17 +37,17 @@ void drawResult(int numbOfCast) {
 	printf("\nSix %d", dice.side6);
 
 	printf("\n\nFrequencies in percent");
-	printf("\nOne %.1f%%", ((dice.side1 * 100) / numbOfCast));
-	printf("\nTwo %.1f%%", ((dice.side2 * 100) / numbOfCast));
-	printf("\nThree %.1f%%", ((dice.side3 * 100) / numbOfCast));
-	printf("\nFour %.1f%%", ((dice.side4 * 100) / numbOfCast));
-	printf("\nFive %.1f%%", ((dice.side5 * 100) / numbOfCast));
-	printf("\nSix %.1f%%", ((dice.side6 * 100) / numbOfCast));
+	printf("\nOne %.2f%%", dicePercent(dice.side1, numbOfCast));
+	printf("\nTwo %.2f%%", dicePercent(dice.side2, numbOfCast));
+	printf("\nThree %.2f%%", dicePercent(dice.side3, numbOfCast));
+	printf("\nFour %.2f%%", dicePercent(dice.side4, numbOfCast));
+	printf("\nFive %.2f%%", dicePercent(dice.side5, numbOfCast));
+	printf("\nSix %.2f%%", dicePercent(dice.side6, numbOfCast));
+	printf("\n----------------------------------------------------\n\n");
 }
 
-
-void castDire(int numbOfCast) {
-	for (int i = 1; i != numbOfCast; i++) {	
+void castDice(double numbOfCast) {
+	for (int i = 0; i != numbOfCast; i++) {	
 		int roll = generateRndNum(6);
 		if (roll == 1) {
 			dice.side1++;
@@ -57,18 +63,25 @@ void castDire(int numbOfCast) {
 			dice.side6++;
 		}
 	}
-
 	drawResult(numbOfCast);
 }
 
 void select() {
 	int input = -1;
-
 	do {
-		scanf("%d", &input);
-		if (validateNumber(&input) == 0) {
-			castDire(input);
-		}
+		scanf(" %d", &input);
+		if (validateIntMax(input) == 1) {
+			if (validateNumber(&input) == 0) {
+				castDice(input);
+				setState(GS_MAINMENU);
+				manage(); //Go back to main menu.
+			}
+			else {
+				printf("Invalid input\n");
+			}
+		} else {
+			printf("Number to big! maximum size is: %d\n", sizeof(__int32));
+		}	
 	} while (input <= 0);
 }
 

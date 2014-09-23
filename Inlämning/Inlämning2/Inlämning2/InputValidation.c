@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 int validateNumber(int *outInt) {
 	int result = 0;
@@ -32,4 +33,12 @@ int validateNumber(int *outInt) {
 	return 0;
 
 
+}
+
+int validateIntMax(int number) {
+	if (number != INT_MAX) {
+		return 1;
+	} else {
+		return 0;
+	}
 }

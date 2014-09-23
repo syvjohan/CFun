@@ -66,17 +66,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Fibonachi.cpp" />
+    <ClCompile Include="Fibonacci.c" />
     <ClCompile Include="GuessNumber.c" />
     <ClCompile Include="InputValidation.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="GameManager.c" />
-    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Random.c" />
     <ClCompile Include="ThrowDice.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.h" />
-    <ClInclude Include="Fibonachi.h" />
+    <ClInclude Include="Fibonacci.h" />
     <ClInclude Include="GuessNumber.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="InputValidation.h" />

@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Fibonachi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GuessNumber.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,7 +30,10 @@
     <ClCompile Include="ThrowDice.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Random.cpp">
+    <ClCompile Include="Fibonacci.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -42,9 +42,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fibonachi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GuessNumber.h">
@@ -57,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fibonacci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

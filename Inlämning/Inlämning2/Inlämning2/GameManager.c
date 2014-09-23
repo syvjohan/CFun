@@ -1,13 +1,14 @@
 #include "Defs.h"
 #include "GameManager.h"
 #include "GuessNumber.h"
-#include "Fibonachi.h"
+#include "Fibonacci.h"
 #include "ThrowDice.h"
 #include "InputValidation.h"
 
 gameState currentState;
 
 void initializeGame() {
+	srand(time(NULL)); /*sets the seed in random generator*/
 	currentState = GS_MAINMENU;
 	manage();
 }
@@ -21,7 +22,7 @@ void manage() {
 		drawGuessMenu();
 		handleInput();
 	} else if (getCurrentState() == GS_THROWDICE) {
-		drawDireMenu();
+		drawDiceMenu();
 		select();
 	} else if (getCurrentState() == GS_FIBONACCI) {
 

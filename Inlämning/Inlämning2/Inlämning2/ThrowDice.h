@@ -1,9 +1,10 @@
 #ifndef THROWDICE_H
 #define THROWDICE_H
 
-void castDire(int numbOfCast);
-void drawDireMenu();
+void castDice(double numbOfCast);
+void drawDiceMenu();
 void select();
-void drawResult(int numbOfCast);
+void drawDiceResult(double numbOfCast);
+double dicePercent(double side, double numbOfCast);
 
 #endif //!THROWDICE_H
