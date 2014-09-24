@@ -1,3 +1,4 @@
+// Johan Fredriksson AB5785.
 #include "Defs.h"
 #include "GuessNumber.h"
 #include "InputValidation.h"
@@ -15,14 +16,15 @@ void drawGuessMenu(void) {
 }
 
 //Handle input and draw.
-void handleInput(void) {
+void handleGuessInput(void) {
 	int rndNum;
 	int count = 0;
 	int input = -1;
 	int temp = 0;
 	rndNum = generateRndNum(MAXSIZE);
 	do {
-		scanf("%d", &input);
+		_flushall();
+		scanf(" %d", &input);
 		temp = input;
 		if (validateNumber(&input) == 0) {
 			if (temp >= MINSIZE && temp <= MAXSIZE) {
@@ -30,14 +32,14 @@ void handleInput(void) {
 					printf("\nCongratulations you guessed correct number\n");
 					printf("Total number of guesses was: %d\n", count);
 					printf("---------------------------------------------\n\n");
-#undef FLAGG
 					setState(GS_MAINMENU);
+#undef FLAGG
 					manage(); //Go back to main menu.
 				} else if (temp > rndNum) {
-					/*printf("Wrong number input was to high, guess again: ");*/ printf("%dwrong number input was to high, guess again: ", rndNum); /*line for testing game*/
+					printf("Wrong number input was to high, guess again: "); /*printf("%dwrong number input was to high, guess again: ", rndNum);*/ /*line for testing game*/
 					count++;
 				} else {
-					/*printf("Wrong number input was to low, guess again: ");*/ printf("%dWrong number input was to low, guess again: ", rndNum); /*line for testing game.*/
+					printf("Wrong number input was to low, guess again: "); /*printf("%dWrong number input was to low, guess again: ", rndNum); *//*line for testing game.*/
 					count++;
 				}
 			} else {

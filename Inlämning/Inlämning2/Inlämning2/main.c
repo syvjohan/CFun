@@ -1,3 +1,4 @@
+// Johan Fredriksson AB5785.
 #include "Defs.h"
 #include "GameManager.h"
 

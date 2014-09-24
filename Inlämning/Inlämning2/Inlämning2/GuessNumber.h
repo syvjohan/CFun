@@ -4,6 +4,6 @@
 void guessNumb(void);
 int generateRndNum();
 void drawGuessMenu(void);
-void handleInput(void);
+void handleGuessInput(void);
 
 #endif //!GUESSNUMBER_H

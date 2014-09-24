@@ -1,3 +1,4 @@
+// Johan Fredriksson AB5785.
 #include "Defs.h"
 #include "InputValidation.h"
 
@@ -31,14 +32,19 @@ int validateNumber(int *outInt) {
 	//*outInt = result * mod;
 
 	return 0;
-
-
 }
 
-int validateIntMax(int number) {
-	if (number != INT_MAX) {
+int validateUINTMAX(int number) {
+	if (number != UINT_MAX) {
 		return 1;
 	} else {
 		return 0;
 	}
+}
+
+int validateMin(int number) {
+	if (number > 0) {
+		return 1;
+	}
+	return 0;
 }

@@ -1,9 +1,14 @@
+// Johan Fredriksson AB5785.
 #include "Defs.h"
 #include "GameManager.h"
 #include "GuessNumber.h"
 #include "Fibonacci.h"
 #include "ThrowDice.h"
 #include "InputValidation.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 gameState currentState;
 
@@ -16,19 +21,20 @@ void initializeGame() {
 void manage() {
 	if (getCurrentState() == GS_MAINMENU) {
 		drawMainMenu();
-		selection();
+		handleGameInput();
 	} else if (getCurrentState() == GS_GUESSNUMBER) {
-		generateRndNum();
 		drawGuessMenu();
-		handleInput();
+		handleGuessInput();
 	} else if (getCurrentState() == GS_THROWDICE) {
 		drawDiceMenu();
-		select();
+		handleDiceInput();
 	} else if (getCurrentState() == GS_FIBONACCI) {
-
+		drawFibMenu();
+		handleFibInput();
+	} else if (getCurrentState() == GS_QUIT) {
+		exit(EXIT_SUCCESS); //Quit the program.
 	} else {
-		//If something goes really wrong....
-		initializeGame();
+		initializeGame(); //If something goes really wrong....
 	}
 }
 
@@ -49,11 +55,11 @@ void drawMainMenu() {
 	printf("Specify an option (1-4): ");
 }
 
-void selection() {
+void handleGameInput() {
 	int choice = -1;
-
 	do {
-		scanf("%d", &choice);
+		_flushall();
+		scanf(" %d", &choice);
 		if (validateNumber(&choice) == 0) {
 			switch (choice) {
 			case 1:
@@ -68,11 +74,18 @@ void selection() {
 				setState(GS_FIBONACCI);
 				manage();
 				break;
+			case 4:
+				setState(GS_QUIT);
+				manage();
+				break;
+			default:
+				manage();
+				printf("\n");
+				break;
 			}
 		} else {
-			printf("Invalid input!\n");
+			printf("\nInput value shall be a number!\n\n");
 			drawMainMenu();
 		}
-
-	} while (choice != 4);
+	} while (getCurrentState() == GS_MAINMENU);
 }

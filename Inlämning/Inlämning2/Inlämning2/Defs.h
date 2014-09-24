@@ -9,7 +9,6 @@
 #define DBG_NEW new
 #endif
 
-
 #define FLAGG 1
 #define MINSIZE 1
 #define MAXSIZE 100

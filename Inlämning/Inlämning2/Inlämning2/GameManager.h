@@ -6,7 +6,7 @@ void manage();
 gameState setState(gameState state);
 gameState getCurrentState();
 void drawMainMenu();
-void selection();
-
+void handleGameInput();
+void exitGame();
 
 #endif //!GAMEMANAGER

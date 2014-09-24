@@ -1,3 +1,4 @@
+// Johan Fredriksson AB5785.
 #include "Defs.h"
 #include "GameManager.h"
 #include "Random.h"
@@ -16,7 +17,8 @@ struct Dice {
 }dice;
 
 void drawDiceMenu() {
-	printf("Welcome to the throw dice game\n");
+	printf("\nWelcome to the throw dice game.\n");
+	printf("Beware program is implemented with UINT_MAX, huge numbers are alowed (4294967295U) it will take som time to calculate!\n\n");
 	printf("----------------------------------------------------\n");
 	printf("Please enter the number of cast you wish to do: ");
 }
@@ -47,7 +49,8 @@ void drawDiceResult(double numbOfCast) {
 }
 
 void castDice(double numbOfCast) {
-	for (int i = 0; i != numbOfCast; i++) {	
+	int i;
+	for (i = 0; i != numbOfCast; i++) {
 		int roll = generateRndNum(6);
 		if (roll == 1) {
 			dice.side1++;
@@ -63,26 +66,31 @@ void castDice(double numbOfCast) {
 			dice.side6++;
 		}
 	}
-	drawResult(numbOfCast);
+	drawDiceResult(numbOfCast);
 }
 
-void select() {
+void handleDiceInput() {
 	int input = -1;
 	do {
+		_flushall();
 		scanf(" %d", &input);
-		if (validateIntMax(input) == 1) {
-			if (validateNumber(&input) == 0) {
+		if (validateNumber(&input) == 0) {
+			if (validateUINTMAX(input) == 1 && validateMin(input) == 1) {
 				castDice(input);
 				setState(GS_MAINMENU);
+#undef FLAGG
 				manage(); //Go back to main menu.
-			}
-			else {
-				printf("Invalid input\n");
+			} else {
+				printf("\nValue not in range!\n");
+				drawDiceMenu();
+				handleDiceInput();
 			}
 		} else {
-			printf("Number to big! maximum size is: %d\n", sizeof(__int32));
-		}	
-	} while (input <= 0);
+			printf("\nInput value shall be a number!\n");
+			drawDiceMenu();
+			handleDiceInput();
+		}
+	} while (1);
 }
 
 

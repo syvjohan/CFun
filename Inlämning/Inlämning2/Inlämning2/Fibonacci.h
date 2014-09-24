@@ -3,8 +3,7 @@
 
 void drawFibMenu();
 void drawFibResult();
-void selectFib();
-void calculateFibo(int maxNumber);
-
+void handleFibInput();
+void calculateFib(int maxNumber);
 
 #endif //!FIBONACCI_H

@@ -3,7 +3,7 @@
 
 void castDice(double numbOfCast);
 void drawDiceMenu();
-void select();
+void handleDiceInput();
 void drawDiceResult(double numbOfCast);
 double dicePercent(double side, double numbOfCast);
 
