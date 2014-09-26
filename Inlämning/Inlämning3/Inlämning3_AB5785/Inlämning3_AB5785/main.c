@@ -14,7 +14,7 @@ void fill_rand_ver1(int array[], int size) {
 void sort_ver1(int array[], int size) {
 	int i, j, temp;
 	for (i = 0; i < size; i++) {
-		for (j = i + 1; j < size; j++) {
+		for (j = i + 1; j != size; j++) {
 			if (array[j] < array[i]) {
 				//Swap.
 				temp = array[j];
@@ -50,8 +50,8 @@ void sort_ver2(int *pointer, int size) {
 	int *pi;
 	int *pj;
 	int temp;
-	for (pi = pointer; pi < (pointer + size); pi++) {
-		for (pj = (pi + 1); pj < (pointer + size); pj++) {
+	for (pi = pointer; pi != (pointer + size); pi++) {
+		for (pj = (pi + 1); pj != (pointer + size); pj++) {
 			if (*pj < *pi) {
 				//Swap.
 				temp = *pj;
@@ -70,7 +70,7 @@ void print_values_ver2(char *string, int *pointer, int size) {
 
 	printf("%s", pc);
 	printf("\n");
-	for (pi; pi < (pointer + size); pi++) {
+	for (pi; pi != (pointer + size); pi++) {
 		printf("%i ", *pi);
 	}
 	printf("\n\n");
