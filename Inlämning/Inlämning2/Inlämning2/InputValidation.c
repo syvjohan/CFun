@@ -6,7 +6,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-int validateNumber(int *outInt) {
+int validateNumber(int *outInt) 
+{
 	int result = 0;
 	char in;
 	int mod = 1;
@@ -34,7 +35,8 @@ int validateNumber(int *outInt) {
 	return 0;
 }
 
-int validateUINTMAX(int number) {
+int validateUINTMAX(int number) 
+{
 	if (number != UINT_MAX) {
 		return 1;
 	} else {
@@ -42,7 +44,8 @@ int validateUINTMAX(int number) {
 	}
 }
 
-int validateMin(int number) {
+int validateMin(int number)
+{
 	if (number > 0) {
 		return 1;
 	}
