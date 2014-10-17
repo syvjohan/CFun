@@ -14,9 +14,9 @@ head = 0;
 numbOfElements = 0;
 
 void enqueue(struct person *p) {
-	strcpy(&queue[tail].firstName, p->firstName);
-	strcpy(&queue[tail].lastName, p->lastName);
-	strcpy(&queue[tail].personID, p->personID);
+	strcpy(&queue[tail % QUEUE_MAX_SIZE].firstName, p->firstName);
+	strcpy(&queue[tail % QUEUE_MAX_SIZE].lastName, p->lastName);
+	strcpy(&queue[tail % QUEUE_MAX_SIZE].personID, p->personID);
 	//Moves tail forward one step. Tail now points to the next free index in the queue.
 	tail++;
 	//increment the number of persons in the queue by 1.

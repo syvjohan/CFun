@@ -9,5 +9,5 @@
 #define REALLOC(PTR, SZ) _realloc_dbg(PTR, SZ, _NORMAL_BLOCK, __FILE__, __LINE__)
 #endif //!_DEBUG
 
-#define QUEUE_MAX_SIZE 10
+#define QUEUE_MAX_SIZE 3
 #endif //!DEFS_H
