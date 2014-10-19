@@ -1,3 +1,4 @@
+//Johan Fredriksson AB5785.
 #pragma once
 
 //Struct
@@ -6,7 +7,7 @@ typedef struct person;
 //Functions
 void enqueue(struct person *p);
 void dequeue(struct person *p);
-void get_person(struct person *p, int pos);
+void get_person(struct person *p, int *pos);
 int get_number_of_person();
 int empty();
 int full();

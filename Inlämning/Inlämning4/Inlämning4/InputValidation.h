@@ -1,7 +1,9 @@
+//Johan Fredriksson AB5785.
 #pragma once
 
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 //For number input.
@@ -33,14 +35,39 @@ int validateNumber(int *outInt) {
 	return 0;
 }
 
-//For string input
-int getLine(char buffer[], size_t sz) {
-	size_t i = 0;
-	char c;
+////For string input
+//int getLine(char buffer[]) {
+//	size_t i = 0;
+//	char c;
+//
+//	while ((c = getchar()) != EOF && c != '\n')
+//		buffer[i++] = c;
+//
+//	buffer[i] = '\0';
+//	return i;
+//}
+//
+//char* memAllocation(char *msg) {
+//	char *string;
+//	string = malloc(40 * sizeof(char)); //Allocate memory for 30 chars.
+//
+//	if (sizeof(string) < sizeof(msg)) {
+//		int size = sizeof(msg) / sizeof(msg[0]); //Gets the number of char in msg.
+//		string = realloc(string, size * sizeof(char));
+//
+//		if (string == NULL) {
+//			fprintf(stderr, "ERROR, unable to reallocate requaried memory\n");
+//		} else {
+//			strcpy(string, msg);
+//		}
+//	} else {
+//		if (string == NULL) {
+//			fprintf(stderr, "ERROR, unable to allocate memory\n");
+//		} else {
+//			strcpy(string, msg);
+//		}
+//	}
+//
+//	return string;
+//}
 
-	while ((c = getchar()) != EOF && c != '\n' && i < sz)
-		buffer[i++] = c;
-
-	buffer[i] = '\0';
-	return i;
-}
