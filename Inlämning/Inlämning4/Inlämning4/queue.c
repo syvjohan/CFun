@@ -5,7 +5,8 @@
 
 //Can't forward declare functions in this file because menu.c need access to them!
 
-struct person {
+struct person 
+{
 	char firstname[STRINGSIZE];
 	char lastname[STRINGSIZE];
 	char personID[STRINGSIZE];
@@ -22,7 +23,8 @@ numbOfElements = 0;
 // 1 % 10 = 1,...,
 // 10 % 10 = 0,
 // 11 % 10 = 1,.....
-void enqueue(struct person *p) {
+void enqueue(struct person *p) 
+{
 	int newTail = tail % QUEUE_MAX_SIZE;
 	//Copying the values from input parameter into queue.
 	strcpy(queue[newTail].firstname, p->firstname);
@@ -34,7 +36,8 @@ void enqueue(struct person *p) {
 	numbOfElements++;
 }
 
-void dequeue(struct person *p) {
+void dequeue(struct person *p) 
+{
 	int newHead = head % QUEUE_MAX_SIZE;
 	//Copy the information to *p.
 	strcpy(p->firstname, queue[newHead].firstname);
@@ -51,7 +54,8 @@ void dequeue(struct person *p) {
 	numbOfElements--;
 }
 
-void get_person(struct person *p, int *pos) {
+void get_person(struct person *p, int *pos) 
+{
 	int newPos = ((head + *pos) % QUEUE_MAX_SIZE);
 
 	//Copys information about an person at a specific position. 
@@ -62,11 +66,13 @@ void get_person(struct person *p, int *pos) {
 }
 
 // Get the total number of persons in the queue
-int get_number_of_person() {
+int get_number_of_person() 
+{
 	return numbOfElements;
 }
 
-int empty() {
+int empty() 
+{
 	if (numbOfElements == 0) {
 		return 1;
 	} 
@@ -74,7 +80,8 @@ int empty() {
 	return 0;
 }
 
-int full() {
+int full() 
+{
 	if (numbOfElements == QUEUE_MAX_SIZE) {
 		return 1;
 	}

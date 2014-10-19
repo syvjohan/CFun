@@ -2,7 +2,8 @@
 #include "menu.h"
 #include "defs.h"
 
-int main(void) {
+int main(void)
+{
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); //Check for memoryLeaks.
 	draw_menu();
 

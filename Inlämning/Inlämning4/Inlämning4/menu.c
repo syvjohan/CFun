@@ -6,7 +6,8 @@
 #include <stdio.h>
 #include <string.h>
 
-struct personInfo {
+struct personInfo 
+{
 	char firstname[STRINGSIZE];
 	char lastname[STRINGSIZE];
 	char personID[STRINGSIZE];
@@ -18,7 +19,8 @@ void add_to_queue();
 void remove_from_queue();
 void print_queue();
 
-void draw_menu() {
+void draw_menu() 
+{
 	printf("****Queue menu****\n");
 	printf("1. Add person to queue\n"
 		   "2. Erase person from queue\n"
@@ -29,7 +31,8 @@ void draw_menu() {
 	main_menu();
 }
 
-void add_to_queue() {
+void add_to_queue()
+{
 	//If the queue is NOT full add person.
 	if (full() == 0) {
 		struct personInfo per;
@@ -53,7 +56,8 @@ void add_to_queue() {
 	draw_menu();
 }
 
-void remove_from_queue() {
+void remove_from_queue()
+{
 	if (empty() == 0) {
 		struct personInfo per;
 		printf("\n****Remove person****\n");
@@ -71,7 +75,8 @@ void remove_from_queue() {
 	draw_menu();
 }
 
-void print_queue() {
+void print_queue()
+{
 	if (empty() == 0) {
 		struct personInfo per;
 		int number = get_number_of_person(); //gets the number of persons.
@@ -96,7 +101,8 @@ void print_queue() {
 	draw_menu();
 }
 
-void main_menu() {
+void main_menu() 
+{
 	int choice = -1;
 	do {
 		scanf(" %d", &choice);

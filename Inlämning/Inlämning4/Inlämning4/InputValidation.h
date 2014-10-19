@@ -7,7 +7,8 @@
 #include <string.h>
 
 //For number input.
-int validateNumber(int *outInt) {
+int validateNumber(int *outInt) 
+{
 	int result = 0;
 	char in;
 	int mod = 1;
