@@ -8,6 +8,8 @@
 #define CALLOC(C, SZ) _calloc_dbg((C), (SZ), _NORMAL_BLOCK, __FILE__, __LINE__)
 #define REALLOC(PTR, SZ) _realloc_dbg(PTR, SZ, _NORMAL_BLOCK, __FILE__, __LINE__)
 #endif
+=======
+#endif //!_DEBUG
 
 #define FLAGG 1
 #define MINSIZE 1

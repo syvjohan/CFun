@@ -12,13 +12,15 @@
 
 gameState currentState;
 
-void initializeGame() {
+void initializeGame() 
+{
 	srand(time(NULL)); /*sets the seed in random generator*/
 	currentState = GS_MAINMENU;
 	manage();
 }
 
-void manage() {
+void manage()
+{
 	if (getCurrentState() == GS_MAINMENU) {
 		drawMainMenu();
 		handleGameInput();
@@ -38,15 +40,18 @@ void manage() {
 	}
 }
 
-gameState setState(gameState state) {
+gameState setState(gameState state) 
+{
 	return (currentState = state);
 }
 
-gameState getCurrentState() {
+gameState getCurrentState()
+{
 	return currentState;
 }
 
-void drawMainMenu() {
+void drawMainMenu() 
+{
 	printf("*****Menu*****\n");
 	printf("1. Guess Number\n"
 		   "2. Throw Dice\n"
@@ -55,7 +60,8 @@ void drawMainMenu() {
 	printf("Specify an option (1-4): ");
 }
 
-void handleGameInput() {
+void handleGameInput()
+{
 	int choice = -1;
 	do {
 		_flushall();

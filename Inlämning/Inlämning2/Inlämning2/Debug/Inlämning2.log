@@ -1,20 +1,34 @@
-﻿Build started 2014-09-25 00:00:00.
+﻿Build started 2014-10-06 19:17:04.
      1>Project "C:\CFun\Inlämning\Inlämning2\Inlämning2\Inlämning2.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt GameManager.c
-         GameManager.c
-     1>c:\cfun\inlämning\inlämning2\inlämning2\gamemanager.c(15): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\CFun\Inlämning\Inlämning2\Debug\Inlämning2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\CFun\Inlämning\Inlämning2\Debug\Inlämning2.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\CFun\Inlämning\Inlämning2\Debug\Inlämning2.lib" /MACHINE:X86 Debug\Fibonacci.obj
-         Debug\GuessNumber.obj
-         Debug\InputValidation.obj
-         Debug\main.obj
-         Debug\GameManager.obj
-         Debug\Random.obj
-         Debug\ThrowDice.obj
-         Inlämning2.vcxproj -> C:\CFun\Inlämning\Inlämning2\Debug\Inlämning2.exe
-     1>Done Building Project "C:\CFun\Inlämning\Inlämning2\Inlämning2\Inlämning2.vcxproj" (Build target(s)).
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt fileOfDoom.c
+         fileOfDoom.c
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(36): warning C4244: 'function' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(38): warning C4013: 'manage' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(41): error C2371: 'manage' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(42): warning C4013: 'getCurrentState' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(43): warning C4013: 'drawMainMenu' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(44): warning C4013: 'handleGameInput' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(46): warning C4013: 'drawGuessMenu' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(47): warning C4013: 'handleGuessInput' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(49): warning C4013: 'drawDiceMenu' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(50): warning C4013: 'handleDiceInput' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(52): warning C4013: 'drawFibMenu' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(53): warning C4013: 'handleFibInput' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(69): error C2371: 'drawMainMenu' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(78): error C2371: 'handleGameInput' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(83): warning C4013: 'validateNumber' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(113): error C2371: 'drawDiceMenu' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(148): warning C4013: 'generateRndNum' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(166): error C2371: 'handleDiceInput' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(172): warning C4013: 'validateUINTMAX' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(172): warning C4013: 'validateMin' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(190): error C2371: 'drawFibMenu' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(221): error C2371: 'handleFibInput' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(243): error C2371: 'drawGuessMenu' : redefinition; different basic types
+     1>c:\cfun\inlämning\inlämning2\inlämning2\fileofdoom.c(250): error C2371: 'handleGuessInput' : redefinition; different basic types
+     1>Done Building Project "C:\CFun\Inlämning\Inlämning2\Inlämning2\Inlämning2.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.27
+Time Elapsed 00:00:00.11

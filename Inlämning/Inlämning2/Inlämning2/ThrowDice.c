@@ -7,7 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Dice {
+struct Dice 
+{
 	int side1;
 	int side2;
 	int side3;
@@ -16,19 +17,22 @@ struct Dice {
 	int side6;
 }dice;
 
-void drawDiceMenu() {
+void drawDiceMenu() 
+{
 	printf("\nWelcome to the throw dice game.\n");
 	printf("Beware program is implemented with UINT_MAX, huge numbers are alowed (4294967295U) it will take som time to calculate!\n\n");
 	printf("----------------------------------------------------\n");
 	printf("Please enter the number of cast you wish to do: ");
 }
 
-double dicePercent(double side, double numbOfCast) {
+double dicePercent(double side, double numbOfCast) 
+{
 	double result = side / numbOfCast;
 	return result * 100;
 }
 
-void drawDiceResult(double numbOfCast) {
+void drawDiceResult(double numbOfCast) 
+{
 	printf("\nResult of throwing the dice %i", (int)numbOfCast);
 	printf(" times");
 	printf("\nOne %d", dice.side1);
@@ -48,7 +52,8 @@ void drawDiceResult(double numbOfCast) {
 	printf("\n----------------------------------------------------\n\n");
 }
 
-void castDice(double numbOfCast) {
+void castDice(double numbOfCast)
+{
 	int i;
 	for (i = 0; i != numbOfCast; i++) {
 		int roll = generateRndNum(6);
@@ -69,7 +74,8 @@ void castDice(double numbOfCast) {
 	drawDiceResult(numbOfCast);
 }
 
-void handleDiceInput() {
+void handleDiceInput() 
+{
 	int input = -1;
 	do {
 		_flushall();

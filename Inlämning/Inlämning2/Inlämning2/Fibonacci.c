@@ -8,14 +8,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void drawFibMenu() {
+void drawFibMenu()
+{
 	printf("\nWelcome to the fabolous game, that print fibonacci numbers.\n");
 	printf("Beware program is implemented with UINT_MAX, huge numbers are alowed (4294967295U) it will take som time to calculate!\n");
 	printf("\n----------------------------------------------------\n");
 	printf("Print the maximum numbers to be printed: ");
 }
 
-void calculateFib(unsigned int iterations) {
+void calculateFib(unsigned int iterations) 
+{
 	unsigned rIterations = iterations - 2;
 	unsigned int v0, v1, tmp, i, k;
 	v0 = 0;
@@ -39,7 +41,8 @@ void calculateFib(unsigned int iterations) {
 	printf("\n\n");
 }
 
-void handleFibInput() {
+void handleFibInput() 
+{
 	int input = -1;
 	do {
 		_flushall();

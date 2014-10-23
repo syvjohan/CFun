@@ -9,14 +9,16 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-void drawGuessMenu(void) {
+void drawGuessMenu(void) 
+{
 	printf("\nWelcome to the fabolous game, guess the number\n");
 	printf("----------------------------------------------------\n");
 	printf("guess a number between 1 - 100: ");
 }
 
 //Handle input and draw.
-void handleGuessInput(void) {
+void handleGuessInput(void) 
+{
 	int rndNum;
 	int count = 0;
 	int input = -1;
