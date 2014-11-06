@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 int count; //counts the number of nodes in queue.
 
 int enqueue(int node);

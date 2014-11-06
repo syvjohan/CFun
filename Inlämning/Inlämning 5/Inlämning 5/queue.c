@@ -64,14 +64,25 @@ static node *createNode(int value) {
 }
 
 int dequeue(int *value) {	
-	// queue is empty.
-	if (queueRef.first) {
-		node *tmp = queueRef.first;
-		queueRef.first = tmp->next;
-		*value = destroyNode(tmp);
-		return 1;
-	}
+	// queue contains node(s).
+		if (queueRef.first) {
 
+			node *tmp = queueRef.first;
+
+			//Over 2 nodes in the list.
+			if (tmp->next != NULL) {
+				//BEWARE! can be wrong if there is only 2 nodes in the list!
+				queueRef.first = tmp->next;
+				*value = destroyNode(tmp);
+				return 1; 
+			}
+			else {
+				//One node in the queue
+				*value = destroyNode(tmp);
+				return 1;
+			}
+		}
+	
 	return 0;
 }
 
