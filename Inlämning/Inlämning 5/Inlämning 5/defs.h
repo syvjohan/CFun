@@ -11,7 +11,6 @@
 #define REALLOC(PTR, SZ) _realloc_dbg(PTR, SZ, _NORMAL_BLOCK, __FILE__, __LINE__)
 #endif //!_DEBUG
 
-typedef int T;
 
 #endif //!DEFS_H
 

@@ -1,43 +1,24 @@
-﻿Build started 2014-11-05 19:29:32.
+﻿Build started 2014-11-06 12:10:46.
      1>Project "C:\CFun\Inlämning\Inlämning 5\Inlämning 5\Inlämning 5.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt queue.c
          queue.c
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(17): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(17): error C2088: '*' : illegal for struct
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(18): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(18): error C2224: left of '.data' must have struct/union type
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(22): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(22): warning C4047: '=' : 'int' differs in levels of indirection from 'node *'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(23): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(23): warning C4047: '=' : 'node *' differs in levels of indirection from 'int'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(24): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(24): warning C4047: '=' : 'node *' differs in levels of indirection from 'int'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(28): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(28): warning C4047: '=' : 'int' differs in levels of indirection from 'node *'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(29): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(29): warning C4047: '=' : 'node *' differs in levels of indirection from 'int'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(30): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(30): warning C4047: '=' : 'node *' differs in levels of indirection from 'int'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(38): error C2143: syntax error : missing '{' before '*'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(38): error C2371: 'createNode' : redefinition; different basic types
-                 c:\cfun\inlämning\inlämning 5\inlämning 5\queue.h(9) : see declaration of 'createNode'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(39): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(39): error C2088: '*' : illegal for struct
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(39): warning C4013: 'malloc' undefined; assuming extern returning int
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(41): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(41): error C2223: left of '->data' must point to struct/union
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(42): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(42): error C2223: left of '->next' must point to struct/union
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(43): warning C4013: 'assert' undefined; assuming extern returning int
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(43): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(44): error C2065: 'newNode' : undeclared identifier
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(61): error C2143: syntax error : missing ')' before '*'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(61): error C2143: syntax error : missing '{' before '*'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(61): error C2059: syntax error : ')'
-     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(61): error C2054: expected '(' to follow 'node_ref'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(43): warning C4047: 'function' : 'int' differs in levels of indirection from 'int *'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(43): warning C4024: 'createNode' : different types for formal and actual parameter 1
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(57): warning C4013: 'malloc' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(57): warning C4047: 'initializing' : 'node *' differs in levels of indirection from 'int'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(63): warning C4047: 'return' : 'node *' differs in levels of indirection from 'node **'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(63): warning C4172: returning address of local variable or temporary
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(70): warning C4133: '=' : incompatible types - from 'node *' to 'node *'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(80): warning C4013: 'free' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(90): warning C4013: 'printf' undefined; assuming extern returning int
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(96): warning C4133: '=' : incompatible types - from 'node *' to 'node *'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(116): warning C4133: ':' : incompatible types - from 'node *' to 'node *'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(116): warning C4133: '=' : incompatible types - from 'node *' to 'node *'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(129): warning C4133: '=' : incompatible types - from 'node *' to 'node *'
+     1>c:\cfun\inlämning\inlämning 5\inlämning 5\queue.c(42): error C4700: uninitialized local variable 'newNode' used
      1>Done Building Project "C:\CFun\Inlämning\Inlämning 5\Inlämning 5\Inlämning 5.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.43
+Time Elapsed 00:00:00.44
