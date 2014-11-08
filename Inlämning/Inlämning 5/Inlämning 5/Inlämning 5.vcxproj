@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defs.h" />
+    <ClInclude Include="inputValidation.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="queue.h" />
   </ItemGroup>

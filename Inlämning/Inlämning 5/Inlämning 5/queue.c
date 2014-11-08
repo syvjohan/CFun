@@ -1,22 +1,7 @@
+//Johan Fredriksson AB5785.
 #include "defs.h"
 #include "queue.h"
 #include <assert.h>
-
-//#define DEFINE_QUEUE(TYPE) \
-//	typedef struct TYPE##_node_s{ \
-//		struct TYPE##_node_s *first; \
-//		struct TYPE##_node_s *last; \
-//	}TYPE##_node_t;
-//
-//DEFINE_QUEUE(int)
-//DEFINE_QUEUE(double)
-
-//int_node_t node44;
-//double_node_t nodedouble;
-//
-//void b() {
-//		
-//}
 
 typedef struct {
 	int data;
@@ -28,7 +13,7 @@ typedef struct {
 	node *last;
 }queueC;
 
-static queueC queueRef;
+static queueC queuePtr;
 
 //Forward declaration of functions.
 static node *createNode(int value);
@@ -45,19 +30,21 @@ int enqueue(int value) {
 
 	++count;
 	//Check if there is only one element in the list.
-	if (queueRef.first == NULL) {
-		queueRef.first = newNode;
-		queueRef.last = newNode;
+	if (queuePtr.first == NULL) {
+		queuePtr.first = newNode;
+		queuePtr.last = newNode;
 		return 1;
 	}
 	else {
-		queueRef.last->next = newNode;
-		queueRef.last = newNode;
+		queuePtr.last->next = newNode;
+		queuePtr.last = newNode;
+		queuePtr.last->next = NULL;
 		return 1;
 	}
 }
 
 static node *createNode(int value) {
+	//Allocating memory for the new node.
 	node *newNode = MALLOC(sizeof(node));
 	assert(newNode && "ERROR, unable to allocate requaried memory");
 
@@ -68,15 +55,15 @@ static node *createNode(int value) {
 }
 
 int dequeue(int *value) {	
-	// queue contains node(s).
-	if (queueRef.first) {
+	// check if queue contains node(s).
+	if (queuePtr.first) {
 
-		node *tmp = queueRef.first;
+		node *tmp = queuePtr.first;
 
 		//Over 2 nodes in the queue.
 		if (tmp->next != NULL) { 
 			//BEWARE! can be wrong if there is only 2 nodes in the list!
-			queueRef.first = tmp->next;
+			queuePtr.first = tmp->next;
 			*value = destroyNode(tmp);
 			return 1; 
 		}
@@ -84,8 +71,8 @@ int dequeue(int *value) {
 			//One node in the queue
 			*value = destroyNode(tmp);
 			tmp = NULL;
-			queueRef.first = NULL;
-			queueRef.last = NULL;
+			queuePtr.first = NULL;
+			queuePtr.last = NULL;
 			return 1;
 		}
 	}
@@ -101,11 +88,11 @@ static int destroyNode(node *nodePtr) {
 	/*Calling free() on a pointer doesn't change it, only marks memory as free. 
 	The pointer will still point to the same location which will contain the 
 	same value, but that value can now get overwritten at any time. To ensure that it
-	doesn't point to anything set the pointer to NULL after freeing it.*/
+	doesn't point to anything set the pointer to NULL after freeing it (see dequeu for setting it to NULL).*/
 }
 
 void printQueue() {
-	node *tmp = queueRef.first;
+	node *tmp = queuePtr.first;
 	if (tmp == NULL) {
 		printf("\nQueue is empty!\n");
 	}
@@ -113,6 +100,7 @@ void printQueue() {
 		printf("\nThe element(s) in the list are: \n");
 		while (tmp != NULL) {
 			printf("%i", tmp->data, "\n");
+			//Move one step forward in the queue.
 			tmp = tmp->next;
 			printf(" -> ");
 		}
@@ -125,18 +113,18 @@ int deleteNode(int data) {
 	// Edge-case 2: Kön har 1 element.
 	// { 1, 9 }
 
-	node *it = queueRef.first;
+	node *it = queuePtr.first;
 	node *prev = NULL;
 
 	// Loop from previous to deal with edge case of deleting the only element.
-	while (prev != queueRef.last) {
+	while (prev != queuePtr.last) {
 
 		// We've found the node.
 		if (it && it->data == data) {
 
 			// Deals with edge cases for 1 element, or deleting first or last element.
-			queueRef.first = (it == queueRef.first) ? it->next : queueRef.first;
-			queueRef.last = (it == queueRef.last) ? prev : queueRef.last;
+			queuePtr.first = (it == queuePtr.first) ? it->next : queuePtr.first;
+			queuePtr.last = (it == queuePtr.last) ? prev : queuePtr.last;
 			
 			if (prev) {
 				prev->next = it->next;
@@ -154,7 +142,7 @@ int deleteNode(int data) {
 	// Deleting the single element in the list.
 	if (it && it->data == data) {
 		destroyNode(it);
-		queueRef.first = queueRef.last = NULL;
+		queuePtr.first = queuePtr.last = NULL;
 		--count;
 		return 1;
 	}
@@ -162,5 +150,23 @@ int deleteNode(int data) {
 	return 0;
 }
 
+//Cleaning up the memory before exit the program...
+void cleanUpMemory() {
+	node *currPtr = queuePtr.first;
+	node *nextPtr = queuePtr.first->next;
+
+	while (currPtr != NULL) {
+		//Move one step forward in the queue.
+		free(currPtr);
+		--count;
+		if (nextPtr == NULL) {
+			return;
+		}
+		else {
+			currPtr = nextPtr;
+			nextPtr = nextPtr->next;
+		}
+	}
+}
 
 
