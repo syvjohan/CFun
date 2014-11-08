@@ -32,72 +32,81 @@ static queueC queueRef;
 
 //Forward declaration of functions.
 static node *createNode(int value);
-static int destroyNode(node *nodeRef);
+static int destroyNode(node *nodePtr);
 
 count = 0;
 
-//TODO kontrollera att noden har blivit Tillagd!!!
 int enqueue(int value) {
 	node *newNode;
-	assert(newNode->data && "The inserted nodes value can't be NULL");
-	newNode = createNode(&value);
-	queueRef.last = newNode; //Add node at last place in the list.
-	++count;
-
-	//Check if there is only one element in the list.
-	if (count == 1) {
-		queueRef.first = newNode;
-		queueRef.last = newNode;
+	newNode = createNode(value);
+	if (newNode == NULL) {
+		return 0;
 	}
 
-	return 1;
+	++count;
+	//Check if there is only one element in the list.
+	if (queueRef.first == NULL) {
+		queueRef.first = newNode;
+		queueRef.last = newNode;
+		return 1;
+	}
+	else {
+		queueRef.last->next = newNode;
+		queueRef.last = newNode;
+		return 1;
+	}
 }
 
 static node *createNode(int value) {
-	node *newNode = malloc(sizeof(node));
+	node *newNode = MALLOC(sizeof(node));
 	assert(newNode && "ERROR, unable to allocate requaried memory");
 
 	newNode->data = value;
 	newNode->next = NULL;
 
-	return &newNode;
+	return newNode;
 }
 
 int dequeue(int *value) {	
 	// queue contains node(s).
-		if (queueRef.first) {
+	if (queueRef.first) {
 
-			node *tmp = queueRef.first;
+		node *tmp = queueRef.first;
 
-			//Over 2 nodes in the list.
-			if (tmp->next != NULL) {
-				//BEWARE! can be wrong if there is only 2 nodes in the list!
-				queueRef.first = tmp->next;
-				*value = destroyNode(tmp);
-				return 1; 
-			}
-			else {
-				//One node in the queue
-				*value = destroyNode(tmp);
-				return 1;
-			}
+		//Over 2 nodes in the queue.
+		if (tmp->next != NULL) { 
+			//BEWARE! can be wrong if there is only 2 nodes in the list!
+			queueRef.first = tmp->next;
+			*value = destroyNode(tmp);
+			return 1; 
 		}
+		else {
+			//One node in the queue
+			*value = destroyNode(tmp);
+			tmp = NULL;
+			queueRef.first = NULL;
+			queueRef.last = NULL;
+			return 1;
+		}
+	}
 	
 	return 0;
 }
 
-static int destroyNode(node *nodeRef) {
-	int tmp = nodeRef->data;
-	free(nodeRef);
-	nodeRef = NULL;
-	--count;
+static int destroyNode(node *nodePtr) {
+	int value = nodePtr->data;
+	free(nodePtr);
+	return value;
 
-	return tmp;
+	/*Calling free() on a pointer doesn't change it, only marks memory as free. 
+	The pointer will still point to the same location which will contain the 
+	same value, but that value can now get overwritten at any time. To ensure that it
+	doesn't point to anything set the pointer to NULL after freeing it.*/
 }
 
 void printQueue() {
 	node *tmp = queueRef.first;
-	if (tmp) {
+	if (tmp == NULL) {
 		printf("\nQueue is empty!\n");
 	}
 	else {
@@ -105,14 +114,16 @@ void printQueue() {
 		while (tmp != NULL) {
 			printf("%i", tmp->data, "\n");
 			tmp = tmp->next;
+			printf(" -> ");
 		}
+		printf("NULL");
 	}
 }
 
 int deleteNode(int data) {
 	// Edge-case 1: Kön är tom
 	// Edge-case 2: Kön har 1 element.
-	// { 1 }
+	// { 1, 9 }
 
 	node *it = queueRef.first;
 	node *prev = NULL;
@@ -150,86 +161,6 @@ int deleteNode(int data) {
 
 	return 0;
 }
-
-////Delete a node somewhere in the queue.
-//int deleteNode(int data) {
-//	node *prevPtr = queueRef.first;
-//	node *currPtr = prevPtr->next;
-//	if (prevPtr) {
-//		printf("\nQueue is empty!\n");
-//	}
-//	else {
-//		if (count > 2) {
-//			//First element.
-//			if (prevPtr->data == data) {
-//				currPtr = queueRef.first;
-//				free(prevPtr);
-//				--count;
-//				return 1;
-//			}
-//			//Last element.
-//			else if (currPtr->data == data && currPtr == queueRef.last) {
-//				queueRef.last = prevPtr;
-//				free(currPtr);
-//				--count;
-//				return 1;
-//			}
-//			//Element in the middle.
-//			else {
-//				while (currPtr->data != data || currPtr != queueRef.last) {
-//					//take one step forward in the queue.
-//					prevPtr = prevPtr->next;
-//					currPtr = currPtr->next;
-//
-//					if (currPtr->data == data) {
-//						currPtr->next = prevPtr;
-//						free(currPtr);
-//						--count;
-//						return 1;
-//					}
-//					else {
-//						//printf("\nThe value could not be found in the queue!\n");
-//						return 0;
-//					}
-//				}
-//			}
-//		}
-//		else {
-//			if (count == 2) {
-//				if (prevPtr->data == data) {
-//					queueRef.first = queueRef.last;
-//					free(prevPtr);
-//					return 1;
-//				}
-//				else if (currPtr->data == data) {
-//					queueRef.last = queueRef.first;
-//					free(currPtr);
-//					return 1;
-//				}
-//				else {
-//					return 0;
-//					//printf("\nThe value could not be found in the queue!\n");
-//				}
-//
-//			} //count == 1;
-//			else if (prevPtr->data == data && count == 1) {
-//				free(prevPtr);
-//				queueRef.first = NULL;
-//				queueRef.last = NULL; //if somereason 2 pointers point to same object this prevent heap corruption.
-//				printf("\nQueue is now empty!\n");
-//				return 1;
-//			}
-//			else {
-//				//printf("\nThe value could not be found in the queue!\n");
-//				return 0;
-//			}
-//		}
-//		
-//	}
-//
-//	//printf("\nThe value could not be found in the queue!\n");
-//	return 0;
-//}
 
 
 
