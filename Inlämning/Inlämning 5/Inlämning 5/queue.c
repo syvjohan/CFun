@@ -152,6 +152,11 @@ int deleteNode(int data) {
 
 //Cleaning up the memory before exit the program...
 void cleanUpMemory() {
+	//ensures program dont crash if 0 nodes has been inserted.
+	if (queuePtr.first == NULL) {
+		return;
+	}
+
 	node *currPtr = queuePtr.first;
 	node *nextPtr = queuePtr.first->next;
 

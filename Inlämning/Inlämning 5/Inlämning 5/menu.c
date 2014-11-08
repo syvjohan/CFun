@@ -41,27 +41,33 @@ void pushBack() {
 void mainMenu() {
 	int choice = -1;
 	scanf(" %i", &choice);
-	do {
-		switch(choice) {
-		case 1:
-			pushBack();
-			break;
-		case 2:
-			popFront();
-			break;
-		case 3:
-			eraseNode();
-			break;
-		case 4:
-			print();
-			break;
-		case 5:
-			cleanUpMemory();
-			exit(EXIT_SUCCESS);
-		default:
-			break;
-		}
-	} while (choice != 5);
+	if (validateIntInput(choice) == 0) {
+		do {
+			switch (choice) {
+			case 1:
+				pushBack();
+				break;
+			case 2:
+				popFront();
+				break;
+			case 3:
+				eraseNode();
+				break;
+			case 4:
+				print();
+				break;
+			case 5:
+				cleanUpMemory();
+				exit(EXIT_SUCCESS);
+			default:
+				break;
+			}
+		} while (choice != 5);
+	}
+	else {
+		printf("\nInvalid input!\n\n");
+		drawMenu();
+	}
 }
 
 void popFront() {
