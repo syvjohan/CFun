@@ -8,16 +8,16 @@ template<typename T>
 class Integer;
 
 template<typename T>
-bool operator<(const Integer<T> &lhs, const Integer<T> &rhs);
+bool operator<(Integer<T> &lhs, Integer<T> &rhs);
 
 template<typename T>
-bool operator>(const Integer<T> &lhs, const Integer<T> &rhs);
+bool operator>(Integer<T> &lhs, Integer<T> &rhs);
 
 template<typename T>
-bool operator<(const Integer<T> &lhs, const T &rhs);
+bool operator<( Integer<T> &lhs, T &rhs);
 
 template<typename T>
-bool operator>(const T &lhs, const Integer<T> &rhs);
+bool operator>( T &lhs, Integer<T> &rhs);
 
 template<typename T>
 class Integer

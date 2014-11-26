@@ -6,7 +6,7 @@
 using namespace std;
 
 void Test() {
-	//Array<int> arr1(10), arr2(10);
+	Array<int> arr1(10), arr2(10);
 
 	/*arr1.GenerateRandNumbers(2, 6);
 	assert(arr1[10] == 7);
