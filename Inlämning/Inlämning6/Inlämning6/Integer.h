@@ -30,7 +30,8 @@ bool operator!=( Integer& lhs, T& rhs);
 class Integer
 {
 public:
-	Integer(int number = NULL); // = NUll. combining a default constructor and a constructor with one element.
+	Integer(int number);
+	Integer();
 	~Integer();
 
 	//Makes the operators friends to the Integer class. Overlaoding the operators
@@ -58,6 +59,12 @@ private:
 Integer::Integer(int number)
 {
 	SetValue(number);
+}
+
+//Default constructor.
+Integer::Integer()
+{
+
 }
 
 Integer::~Integer()
