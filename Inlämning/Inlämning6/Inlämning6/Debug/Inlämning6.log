@@ -1,13 +1,37 @@
-﻿Build started 2014-11-27 21:08:26.
+﻿Build started 2014-11-28 20:36:08.
      1>Project "C:\CFun\Inlämning\Inlämning6\Inlämning6\Inlämning6.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\CFun\Inlämning\Inlämning6\Debug\Inlämning6.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\CFun\Inlämning\Inlämning6\Debug\Inlämning6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\CFun\Inlämning\Inlämning6\Debug\Inlämning6.lib" /MACHINE:X86 Debug\Main.obj
-         Inlämning6.vcxproj -> C:\CFun\Inlämning\Inlämning6\Debug\Inlämning6.exe
-     1>Done Building Project "C:\CFun\Inlämning\Inlämning6\Inlämning6\Inlämning6.vcxproj" (Build target(s)).
+     1>c:\cfun\inlämning\inlämning6\inlämning6\array.h(334): error C2440: 'initializing' : cannot convert from 'Number<T>' to 'int'
+                 with
+                 [
+                     T=int
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(333) : while compiling class template member function 'int Array<int>::Partition(Number<T> *,T,T)'
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(326) : see reference to function template instantiation 'int Array<int>::Partition(Number<T> *,T,T)' being compiled
+                 with
+                 [
+                     T=int
+                 ]
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(122) : while compiling class template member function 'Array<int>::Array(const Array<int> &)'
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(193) : see reference to function template instantiation 'Array<int>::Array(const Array<int> &)' being compiled
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(90) : while compiling class template member function 'Array<int>::Array(void)'
+                 c:\cfun\inlämning\inlämning6\inlämning6\main.cpp(12) : see reference to function template instantiation 'Array<int>::Array(void)' being compiled
+                 c:\cfun\inlämning\inlämning6\inlämning6\main.cpp(12) : see reference to class template instantiation 'Array<int>' being compiled
+     1>c:\cfun\inlämning\inlämning6\inlämning6\array.h(347): error C2440: '=' : cannot convert from 'Number<T>' to 'int'
+                 with
+                 [
+                     T=int
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>Done Building Project "C:\CFun\Inlämning\Inlämning6\Inlämning6\Inlämning6.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.54
+Time Elapsed 00:00:00.34

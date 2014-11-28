@@ -26,7 +26,7 @@
     <ClInclude Include="Defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Integer.h">
+    <ClInclude Include="Number.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
