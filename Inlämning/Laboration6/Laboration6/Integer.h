@@ -11,9 +11,6 @@ bool operator<(int &lhs, Integer &rhs);
 bool operator>(Integer &lhs, Integer &rhs);
 bool operator>( Integer &lhs, int &rhs);
 
-//template<typename ARRTYPE>
-//ARRTYPE operator[](ARRTYPE *arr, Integer<int> index);
-
 class Integer
 {
 public:
@@ -28,25 +25,17 @@ public:
 		return someValue;
 	}
 
-	//Makes the operators friends to the Integer class. Overlaoding the operators
+	//Makes the operators friends to the Integer class. Overlaoding the operators. 
 	friend bool operator<(const int &lhs, const Integer &rhs);
 	friend bool operator<(const Integer &lhs, const Integer &rhs);
 
 	friend bool operator>(const Integer &lhs, const Integer &rhs);
 	friend bool operator>(const Integer &lhs, const int &rhs);
 
-	//template<typename ARRTYPE>
-	//friend ARRTYPE operator[](ARRTYPE *arr, Integer<int> index);
-
 private:
 	int someValue;
 	void SetValue(int number);
 };
-
-//template<typename ARRTYPE>
-//ARRTYPE operator[](ARRTYPE *arr, Integer<int> index) {
-//	return arr[index.GetValue()];
-//}
 
 Integer::Integer(int number)
 {
@@ -56,6 +45,7 @@ Integer::Integer(int number)
 //Default constructor.
 Integer::Integer()
 {
+	//if user creates a default constructor someValue is set to NULL.
 	someValue = NULL;
 }
 
