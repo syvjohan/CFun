@@ -1,10 +1,7 @@
 #include "Integer.h"
 #include "Defs.h"
 
-#include <time.h>
 #include <iostream>
-#include <cassert>
-#include <algorithm>
 #include <random>
 
 
@@ -92,7 +89,7 @@ int Array::Partition(Integer *arr, int begin, int end) {
 	int x = arr[begin]; 
 	int i = begin - 1;
 	int j = end + 1;
-	int temp; //holds an value when i and j is changing value.
+	int temp;
 
 	do {
 		do {
@@ -104,7 +101,7 @@ int Array::Partition(Integer *arr, int begin, int end) {
 
 		if (i < j) {
 			//Swaps the values.
-			temp = arr[i];
+			temp = arr[i];  //holds arr[i] value when arr[i] sets to arr[j]  value.
 			arr[i] = arr[j];
 			arr[j] = temp;
 		}

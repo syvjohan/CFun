@@ -2,33 +2,38 @@
 
 
 void Test() {
+	printf("Print size of array: ");
+	int input1 = NULL;
+	int input2 = NULL;
+	scanf("%i", &input1);
 
-	printf("\nFirst Array\n");
-	Array arr1(10);
+	Array arr1(input1);
+	input1 = NULL;
 
-	arr1.FillArr(0, 10);
+	printf("/nPrint min and max value to be filled(Press Enter between values): ");
+	scanf(" %i", &input1);
+	scanf(" %i", &input2);
+	arr1.FillArr(input1, input2);
 
+	printf("/nValues in the array is: ");
 	arr1.PrintArr();
 
-	arr1.Sort(0, 10);
+	input1 = NULL;
+	input2 = NULL;
+	printf("/nPrint min and max elements to be sorted(Press Enter between values): ");
+	scanf("%i", &input1);
+	scanf(" %i", &input2);
 
+	arr1.Sort(input1, input2);
+
+	printf("/nSorted values in array is:");
 	arr1.PrintArr();
 
-
-	printf("\nSecond Array\n");
-	Array arr2(10);
-
-	arr2.FillArr(0, 10);
-
-	arr2.PrintArr();
-
-	arr2.Sort(0, 10);
-
-	arr2.PrintArr();
 }
 
 
 int main() {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); //Check for memoryLeaks.
 	Test();	
 
 	system("pause");
