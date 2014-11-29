@@ -1,5 +1,5 @@
 #pragma once
-#include "Number.h"
+#include "Integer.h"
 #include "Defs.h"
 
 #include <time.h>
@@ -18,10 +18,10 @@ template<typename T>
 bool operator!=( Array<T> &arr1, Array<T> &arr2);
 
 template<typename T>
-bool operator==( Number<T> &arr1, T &number);
+bool operator==( Integer &arr1, T &number);
 	
 template<typename T>
-bool operator!=( Number<T> &arr1, T &number);
+bool operator!=( Integer &arr1, T &number);
 
 template<typename T>
 std::ostream& operator<<( std::ostream& cout, Array<T> arr);
@@ -33,76 +33,76 @@ public:
 	Array<T>();
 	Array<T>(const T* data);
 	Array<T>(const Array<T> &rhs);
-	//No constructor for adding one single number se PushBack function and operators instead...
+	//No constructor for adding one single Integer se PushBack function and operators instead...
 	
 	~Array<T>();
 
 	void Sort(T begin, T end);
 	void FillArr(T min, T max);
 	
-	Number<T>& operator[]( T index);
+	Integer& operator[]( T index);
 
 	Array<T>& operator=(const Array<T>& rhs);
-	Array<T>& operator=(const T* numbers);
+	Array<T>& operator=(const T* number);
 	Array<T>& operator=(T number);
 
 	Array<T>& operator+=(const Array<T>& rhs);
-	Array<T>& operator+=(T* numbers);
+	Array<T>& operator+=(T* number);
 
 	Array<T> operator+(const Array<T>& rhs);
-	Array<T> operator+(const T* numbers);
+	Array<T> operator+(const T* number);
 
-	Number<T>& At(const int i);
-	Number<T>& At(const int i) const;
+	Integer& At(const int i);
+	Integer& At(const int i) const;
 	void ShrinkToFit();
 	int Length() const;
-	const Number<T> *Data() const;
+	const Integer *Data() const;
 	int Capacity() const;
 	void PushBack(const T number);
 	void Reserve(const int newSize);
 	void Empty();
 
-	friend bool operator==(const Number<T> &arr1, const T &number);
+	friend bool operator==(const Integer &arr1, const T &number);
 	friend bool operator==(const Array<T> &arr1, const Array<T> &arr2);
 
 	friend bool operator!=(const Array<T> &arr1, const Array<T> &arr2);
-	friend bool operator!=(const Number<T> &arr1, const T &number);
+	friend bool operator!=(const Integer &arr1, const T &number);
 
 	friend std::ostream& operator<<(std::ostream& cout, const Array<T> arr);
 
 private:
 	int size;
 	int length;
-	Number<T> *numberArr;
+	Integer *integerArr;
 
-	void QuickSort(Number<T> *arr, T left, T right);
-	T Partition(Number<T> *arr, T left, T right);
+	void QuickSort(Integer *arr, T left, T right);
+	T Partition(Integer *arr, T left, T right);
 	bool CmpArrVSArr(const Array<T> &arr1, const Array<T> &arr2);
-	bool CmpArrVST(const Array<T> &arr1, const T &number);
-	T GenerateRandNumbers(T min, T max);
+	bool CmpArrVST(const Integer &arr1, const T &number);
+	T GenerateRandIntegers(T min, T max);
 	void SetSeed();
-	int ArrLength(const T *numbers) const;
+	int ArrLength(const T *Integers) const;
 	void Concat(const Array<T> &r);
 };
 
 //Default constructor.
 template<typename T>
 Array<T>::Array() {
-	numberArr = NULL;
+	integerArr = NULL;
 	size = 0;
 	length = 0;
 	SetSeed();
 }
 
-//Int rounds off input value to an Number. Works as std::basic_string Reserve function.
+//Int rounds off input value to an Integer. Works as std::basic_string Reserve function.
 template<typename T>
 Array<T>::Array(const int size) {
-	numberArr = NULL;
+	integerArr = NULL;
 	this->size = size;
 	length = 0;
 	SetSeed();
 
-	numberArr = DBG_NEW Number<T>[size];
+	integerArr = DBG_NEW Integer[size];
 	
 }
 
@@ -110,17 +110,17 @@ template<typename T>
 Array<T>::Array(const T* data) {
 	length = ArrLength(data);
 	size = length;
-	numberArr = DBG_NEW Number<T>[size];
+	integerArr = DBG_NEW Integer[size];
 
 	SetSeed();
 
-	memcpy(numberArr, data, length);
+	memcpy(integerArr, data, length);
 }
  
 //Copy constructor.
 template<typename T>
 Array<T>::Array(const Array<T> &rhs) {
-	numberArr = NULL;
+	integerArr = NULL;
 	size = 0;
 	length = 0;
 	SetSeed();
@@ -129,8 +129,8 @@ Array<T>::Array(const Array<T> &rhs) {
 
 template<typename T>
 Array<T>::~Array() {
-	if (numberArr != NULL) {
-		delete[] numberArr;
+	if (integerArr != NULL) {
+		delete[] integerArr;
 	}
 }
 
@@ -141,18 +141,18 @@ void Array<T>::SetSeed() {
 
 //Index operator
 template<typename T>
-inline Number<T>& Array<T>::operator[](T index) {
-	return numberArr[index];
+inline Integer& Array<T>::operator[](T index) {
+	return integerArr[index];
 }
 
 template<typename T>
 Array<T>& Array<T>::operator=(const Array<T>& rhs) {
-	if (rhs.numberArr == numberArr) {
+	if (rhs.integerArr == integerArr) {
 		return *this;
 	}
 	
-	delete[] numberArr;
-	numberArr = NULL;
+	delete[] integerArr;
+	integerArr = NULL;
 	length = 0;
 	size = 0;
 	Concat(rhs);
@@ -171,7 +171,7 @@ Array<T>& Array<T>::operator=(T number) {
 		Concat(number);
 	}
 
-	numberArr[0] = number;
+	integerArr[0] = number;
 
 	return *this;
 }
@@ -204,19 +204,19 @@ Array<T> Array<T>::operator+(const T* numbers) {
 
 
 template<typename T>
-inline Number<T>& Array<T>::At(const int i) const {
+inline Integer& Array<T>::At(const int i) const {
 	if (i >= size || i < 0) {
 		throw std::out_of_range("Index of array is out of bounds!");
 	}
-	return numberArr[i];
+	return integerArr[i];
 }
 
 template<typename T>
-inline Number<T>& Array<T>::At(const int i) {
+inline Integer& Array<T>::At(const int i) {
 	if (i >= size || i < 0) {
 		throw std::out_of_range("Index of array is out of bounds!");
 	}
-	return numberArr[i];
+	return integerArr[i];
 }
 
 template<typename T>
@@ -225,8 +225,8 @@ int Array<T>::Length() const {
 }
 
 template<typename T>
-const Number<T>* Array<T>::Data() const {
-	return numberArr;
+const Integer* Array<T>::Data() const {
+	return integerArr;
 }
 
 template<typename T>
@@ -238,9 +238,9 @@ template<typename T>
 void Array<T>::ShrinkToFit() {
 	if (size > length) {
 		size = length;
-		Number<T> *temp = numberArr;
-		numberArr = DBG_NEW Number<T>[length];
-		memcpy(numberArr, temp, length);
+		Integer *temp = integerArr;
+		integerArr = DBG_NEW Integer[length];
+		memcpy(integerArr, temp, length);
 		delete[] temp;
 	}
 }
@@ -253,7 +253,7 @@ void Array<T>::Reserve(const int newSize) {
 
 	size = newSize;
 	T *temp = DBG_NEW T[size];
-	memcpy(numberArr, temp, size);
+	memcpy(integerArr, temp, size);
 	delete[] temp;
 }
 
@@ -261,26 +261,26 @@ template<typename T>
 void Array<T>::Concat(const Array<T> &r) {
 	int newLength = length + r.length;
 
-	if (numberArr == NULL) {
-		numberArr = DBG_NEW Number<T>[size];
+	if (integerArr == NULL) {
+		integerArr = DBG_NEW Integer[size];
 
 	} else if (newLength > size) {
 		int newSize = std::max(newLength, size * 2);
 
-		Number<T> *temp = numberArr;
-		numberArr = DBG_NEW Number<T>[size];
+		Integer *temp = integerArr;
+		integerArr = DBG_NEW Integer[size];
 		size = newSize;
-		memcpy(numberArr, temp, length);
+		memcpy(integerArr, temp, length);
 		delete[] temp;
 	}
 
-	memcpy(numberArr + length, r.numberArr, r.length);
+	memcpy(integerArr + length, r.integerArr, r.length);
 	length = newLength;
 }
 
 template<typename T>
-void Array<T>::PushBack(const T number) {
-	Concat(&number);
+void Array<T>::PushBack(const T Integer) {
+	Concat(&Integer);
 }
 
 //It is more efficient to set the array length, capacity to zero and the first element to NULL instead of emptying the array.
@@ -288,13 +288,13 @@ void Array<T>::PushBack(const T number) {
 //The values that is left will be overwriten on next fill. This is the same technique as std::basic_string uses.
 template<typename T>
 void Array<T>::Empty() {
-	numberArr[0] = NULL;
+	integerArr[0] = NULL;
 	size = 0;
 	length = 0;
 }
 
 template<typename T>
-T Array<T>::GenerateRandNumbers(T min, T max) {
+T Array<T>::GenerateRandIntegers(T min, T max) {
 	T value;
 	do {
 		value = rand() % max + 1;
@@ -307,8 +307,8 @@ T Array<T>::GenerateRandNumbers(T min, T max) {
 template<typename T>
 void Array<T>::FillArr(T min, T max) {
 	 do {
-			T value = GenerateRandNumbers(min, max);
-			numberArr[length] = value;
+			T value = GenerateRandIntegers(min, max);
+			integerArr[length] = value;
 			length++;
 	 } while (size != length);
 }
@@ -316,11 +316,11 @@ void Array<T>::FillArr(T min, T max) {
 //QuickSort interface.
 template<typename T>
 void Array<T>::Sort(T begin, T end) {
-	QuickSort(numberArr, begin, end);
+	QuickSort(integerArr, begin, end);
 }
 
 template<typename T>
-void Array<T>::QuickSort(Number<T> *arr, T left, T right) {
+void Array<T>::QuickSort(Integer *arr, T left, T right) {
 	T currValue; 
 	if (right < left) {
 		currValue = Partition(arr, right, left);
@@ -330,18 +330,19 @@ void Array<T>::QuickSort(Number<T> *arr, T left, T right) {
 }
 
 template<typename T>
-T Array<T>::Partition(Number<T> *arr, T left, T right) {  
-	T x = arr[right]; 
+T Array<T>::Partition(Integer *arr, T left, T right) {  
+	Integer x = arr[right].GetValue(); 
 	T i = right; //- 1
 	T j = left; // + 1
 	T temp; 
+
 	do {
 		do {
 			j--;
-		} while (x > arr[j]);
+		} while (x > arr[j].GetValue());
 		do {
 			i++;
-		} while (x < arr[i]);
+		} while (x < arr[i].GetValue());
 
 		if (i < j) {
 			temp = arr[i];
@@ -354,10 +355,10 @@ T Array<T>::Partition(Number<T> *arr, T left, T right) {
 
 //Counts the elements and return the length. change NULL to '/0' and you have  c version of strlen
 template<typename T>
-int Array<T>::ArrLength(const T *numbers) const {
+int Array<T>::ArrLength(const T *Integers) const {
 	size_t len = 0;
-	while (*numbers != NULL) {
-		*numbers++;
+	while (*Integers != NULL) {
+		*Integers++;
 		len++;
 	}
 
@@ -370,8 +371,8 @@ bool Array<T>::CmpArrVSArr(const Array<T> &arr1, const Array<T> &arr2) {
 }
 
 template<typename T>
-bool Array<T>::CmpArrVST(const Array<T> &arr1, const T &number) {
-	return arr1[0] == number;
+bool Array<T>::CmpArrVST(const Integer &arr1, const T &number) {
+	return arr1.GetValue() == number;
 }
 
 template<typename T>
@@ -385,13 +386,13 @@ inline bool operator!=(const Array<T> &arr1, const Array<T> &arr2) {
 }
 
 template<typename T>
-inline bool operator==(const Number<T> &arr1, const T &number) {
-	return CmpArrVSArr(arr1, number);
+inline bool operator==(const Integer &arr1, const T &number) {
+	return CmpArrVST(arr1, number);
 }
 
 template<typename T>
-inline bool operator!=(const Number<T> &arr1, const T &number) {
-	return !CmpArrVSArr(arr1, number);
+inline bool operator!=(const Integer &arr1, const T &number) {
+	return !CmpArrVST(arr1, number);
 }
 
 template<typename T>

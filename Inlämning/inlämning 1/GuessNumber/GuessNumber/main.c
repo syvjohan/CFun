@@ -1,10 +1,10 @@
-//Johan Fredriksson AB5785.
+/*Johan Fredriksson AB5785.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
 
-#define FLAGG 1
+#define FLAGG 1 /* macro "flagg" for keeping track if the user have guess correct number*/.
 #define MINSIZE 1
 #define MAXSIZE 100
 
@@ -16,12 +16,11 @@ int main(void)
 {
 
 	int rndNum;
-	int count;
+	int count; /*counter for number of guesses*/
 	int input;
 	int temp;
 	
-	//sets the seed with help of time.
-	srand(time(NULL));
+	srand(time(NULL)); /*sets the seed in random generator*/
 
 	menu();
 	rndNum = generateRndNum();
@@ -38,11 +37,12 @@ int main(void)
 					#undef FLAGG
 					rndNum = generateRndNum();
 					menu();
+					count = 0;
 				} else if (temp > rndNum) {
-					printf("%dWrong number input was to high, guess again: ", rndNum);
+					printf("Wrong number input was to high, guess again: "); /*printf("%dWrong number input was to high, guess again: ", rndNum);*/ /*line for testing game*/
 					count++;
 				} else {
-					printf("%dWrong number input was to low, guess again: ", rndNum);
+					printf("Wrong number input was to low, guess again: "); /*printf("%dWrong number input was to low, guess again: ", rndNum);*/ /*line for testing game.*/
 					count++;
 				}
 			} else {
@@ -56,6 +56,7 @@ int main(void)
 	return 0;
 }
 
+/*Game menu*/
 void menu() 
 {
 	printf("Welcome to the fabolous game, guess the number\n");
@@ -63,6 +64,7 @@ void menu()
 	printf("Guess a number between 1 - 100: ");
 }
 
+/*Validating input*/
 int readNumber(int *outInt) 
 {
 	int result = 0;
@@ -92,6 +94,7 @@ int readNumber(int *outInt)
 	return 0;
 }
 
+/*Generating new "random" number.*/
 int generateRndNum() 
 {
 	return rand() % MAXSIZE + 1;

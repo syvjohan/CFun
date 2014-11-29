@@ -152,3 +152,6 @@ Test::Test(int value) : x(value)
 Test::Test(int value) {
 	x = value;
 */
+
+So, for passing by value,
+a copy of an identical object is created with a different reference, and the local variable is assigned the new reference, so to point to the new copy

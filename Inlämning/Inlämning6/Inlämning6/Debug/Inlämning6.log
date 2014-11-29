@@ -1,20 +1,28 @@
-﻿Build started 2014-11-28 20:36:08.
+﻿Build started 2014-11-29 13:53:59.
      1>Project "C:\CFun\Inlämning\Inlämning6\Inlämning6\Inlämning6.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp
          Main.cpp
-     1>c:\cfun\inlämning\inlämning6\inlämning6\array.h(334): error C2440: 'initializing' : cannot convert from 'Number<T>' to 'int'
+     1>c:\cfun\inlämning\inlämning6\inlämning6\array.h(345): error C2666: 'operator <' : 3 overloads have similar conversions
+                 c:\cfun\inlämning\inlämning6\inlämning6\integer.h(37): could be 'bool operator <(const Integer &,const Integer &)'
+                 c:\cfun\inlämning\inlämning6\inlämning6\integer.h(9): or       'bool operator <(Integer &,Integer &)'
+                 c:\cfun\inlämning\inlämning6\inlämning6\integer.h(36): or       'bool operator <<Integer>(const T &,const Integer &)'
+                 with
+                 [
+                     T=Integer
+                 ]
+                 c:\cfun\inlämning\inlämning6\inlämning6\integer.h(11): or       'bool operator <<Integer>(T &,Integer &)'
+                 with
+                 [
+                     T=Integer
+                 ]
+                 while trying to match the argument list '(Integer, int)'
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(333) : while compiling class template member function 'int Array<int>::Partition(Integer *,T,T)'
                  with
                  [
                      T=int
                  ]
-                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(333) : while compiling class template member function 'int Array<int>::Partition(Number<T> *,T,T)'
-                 with
-                 [
-                     T=int
-                 ]
-                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(326) : see reference to function template instantiation 'int Array<int>::Partition(Number<T> *,T,T)' being compiled
+                 c:\cfun\inlämning\inlämning6\inlämning6\array.h(326) : see reference to function template instantiation 'int Array<int>::Partition(Integer *,T,T)' being compiled
                  with
                  [
                      T=int
@@ -22,14 +30,9 @@
                  c:\cfun\inlämning\inlämning6\inlämning6\array.h(122) : while compiling class template member function 'Array<int>::Array(const Array<int> &)'
                  c:\cfun\inlämning\inlämning6\inlämning6\array.h(193) : see reference to function template instantiation 'Array<int>::Array(const Array<int> &)' being compiled
                  c:\cfun\inlämning\inlämning6\inlämning6\array.h(90) : while compiling class template member function 'Array<int>::Array(void)'
-                 c:\cfun\inlämning\inlämning6\inlämning6\main.cpp(12) : see reference to function template instantiation 'Array<int>::Array(void)' being compiled
-                 c:\cfun\inlämning\inlämning6\inlämning6\main.cpp(12) : see reference to class template instantiation 'Array<int>' being compiled
-     1>c:\cfun\inlämning\inlämning6\inlämning6\array.h(347): error C2440: '=' : cannot convert from 'Number<T>' to 'int'
-                 with
-                 [
-                     T=int
-                 ]
-                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+                 c:\cfun\inlämning\inlämning6\inlämning6\main.cpp(10) : see reference to function template instantiation 'Array<int>::Array(void)' being compiled
+                 c:\cfun\inlämning\inlämning6\inlämning6\main.cpp(10) : see reference to class template instantiation 'Array<int>' being compiled
+     1>cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
      1>Done Building Project "C:\CFun\Inlämning\Inlämning6\Inlämning6\Inlämning6.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
