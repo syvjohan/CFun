@@ -1,5 +1,5 @@
 #include "Integer.h"
-//#include "Defs.h"
+#include "Defs.h"
 
 #include <time.h>
 #include <iostream>
@@ -38,7 +38,7 @@ Array::Array(const int size) {
 	length = 0;
 	SetSeed();
 
-	integerArr = new Integer[size];
+	integerArr = DBG_NEW Integer[size];
 
 }
 
